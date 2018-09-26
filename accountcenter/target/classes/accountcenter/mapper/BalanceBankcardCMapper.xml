@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bichuang.accountcenter.repository.mapper.BalanceBankcardCMapper">
+  <resultMap id="BaseResultMap" type="com.bichuang.accountcenter.repository.model.BalanceBankcardC">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="bank_cardno" jdbcType="VARCHAR" property="bankCardno" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="bind_time" jdbcType="TIMESTAMP" property="bindTime" />
+    <result column="card_type" jdbcType="INTEGER" property="cardType" />
+    <result column="bind_state" jdbcType="INTEGER" property="bindState" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="is_safe_card" jdbcType="BIT" property="isSafeCard" />
+    <result column="is_verify_paychecked" jdbcType="BIT" property="isVerifyPaychecked" />
+    <result column="is_quick_paycard" jdbcType="BIT" property="isQuickPaycard" />
+    <result column="bind_method" jdbcType="INTEGER" property="bindMethod" />
+    <result column="cust_id" jdbcType="VARCHAR" property="custId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `bank_cardno`, `bank_name`, `bind_time`, `card_type`, `bind_state`, `phone`, 
+    `is_safe_card`, `is_verify_paychecked`, `is_quick_paycard`, `bind_method`, `cust_id`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `t_bc_c_bankcard`
+    where `Id` = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAll" parameterType="com.bichuang.accountcenter.repository.model.BalanceBankcardC" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `t_bc_c_bankcard`
+    where 1=1
+     <if test="bankCardno != null and bankCardno !=''">
+        and `bank_cardno` = #{bankCardno,jdbcType=VARCHAR}
+      </if>
+      <if test="custId != null and custId != ''">
+        and `cust_id` = #{custId,jdbcType=VARCHAR}
+      </if>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from `t_bc_c_bankcard`
+    where `Id` = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bichuang.accountcenter.repository.model.BalanceBankcardC">
+    insert into `t_bc_c_bankcard` (`Id`, `bank_cardno`, `bank_name`, 
+      `bind_time`, `card_type`, `bind_state`, 
+      `phone`, `is_safe_card`, `is_verify_paychecked`, 
+      `is_quick_paycard`, `bind_method`, `cust_id`
+      )
+    values (#{id,jdbcType=INTEGER}, #{bankCardno,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, 
+      #{bindTime,jdbcType=TIMESTAMP}, #{cardType,jdbcType=INTEGER}, #{bindState,jdbcType=INTEGER}, 
+      #{phone,jdbcType=VARCHAR}, #{isSafeCard,jdbcType=BIT}, #{isVerifyPaychecked,jdbcType=BIT}, 
+      #{isQuickPaycard,jdbcType=BIT}, #{bindMethod,jdbcType=INTEGER}, #{custId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bichuang.accountcenter.repository.model.BalanceBankcardC">
+    insert into `t_bc_c_bankcard`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `Id`,
+      </if>
+      <if test="bankCardno != null">
+        `bank_cardno`,
+      </if>
+      <if test="bankName != null">
+        `bank_name`,
+      </if>
+      <if test="bindTime != null">
+        `bind_time`,
+      </if>
+      <if test="cardType != null">
+        `card_type`,
+      </if>
+      <if test="bindState != null">
+        `bind_state`,
+      </if>
+      <if test="phone != null">
+        `phone`,
+      </if>
+      <if test="isSafeCard != null">
+        `is_safe_card`,
+      </if>
+      <if test="isVerifyPaychecked != null">
+        `is_verify_paychecked`,
+      </if>
+      <if test="isQuickPaycard != null">
+        `is_quick_paycard`,
+      </if>
+      <if test="bindMethod != null">
+        `bind_method`,
+      </if>
+      <if test="custId != null">
+        `cust_id`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bankCardno != null">
+        #{bankCardno,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bindTime != null">
+        #{bindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cardType != null">
+        #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="bindState != null">
+        #{bindState,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="isSafeCard != null">
+        #{isSafeCard,jdbcType=BIT},
+      </if>
+      <if test="isVerifyPaychecked != null">
+        #{isVerifyPaychecked,jdbcType=BIT},
+      </if>
+      <if test="isQuickPaycard != null">
+        #{isQuickPaycard,jdbcType=BIT},
+      </if>
+      <if test="bindMethod != null">
+        #{bindMethod,jdbcType=INTEGER},
+      </if>
+      <if test="custId != null">
+        #{custId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bichuang.accountcenter.repository.model.BalanceBankcardC">
+    update `t_bc_c_bankcard`
+    <set>
+      <if test="bankCardno != null">
+        `bank_cardno` = #{bankCardno,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        `bank_name` = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bindTime != null">
+        `bind_time` = #{bindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cardType != null">
+        `card_type` = #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="bindState != null">
+        `bind_state` = #{bindState,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        `phone` = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="isSafeCard != null">
+        `is_safe_card` = #{isSafeCard,jdbcType=BIT},
+      </if>
+      <if test="isVerifyPaychecked != null">
+        `is_verify_paychecked` = #{isVerifyPaychecked,jdbcType=BIT},
+      </if>
+      <if test="isQuickPaycard != null">
+        `is_quick_paycard` = #{isQuickPaycard,jdbcType=BIT},
+      </if>
+      <if test="bindMethod != null">
+        `bind_method` = #{bindMethod,jdbcType=INTEGER},
+      </if>
+      <if test="custId != null">
+        `cust_id` = #{custId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `Id` = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bichuang.accountcenter.repository.model.BalanceBankcardC">
+    update `t_bc_c_bankcard`
+    set `bank_cardno` = #{bankCardno,jdbcType=VARCHAR},
+      `bank_name` = #{bankName,jdbcType=VARCHAR},
+      `bind_time` = #{bindTime,jdbcType=TIMESTAMP},
+      `card_type` = #{cardType,jdbcType=INTEGER},
+      `bind_state` = #{bindState,jdbcType=INTEGER},
+      `phone` = #{phone,jdbcType=VARCHAR},
+      `is_safe_card` = #{isSafeCard,jdbcType=BIT},
+      `is_verify_paychecked` = #{isVerifyPaychecked,jdbcType=BIT},
+      `is_quick_paycard` = #{isQuickPaycard,jdbcType=BIT},
+      `bind_method` = #{bindMethod,jdbcType=INTEGER},
+      `cust_id` = #{custId,jdbcType=VARCHAR}
+    where `Id` = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<classPathEntry
+		location="F:/chenrepository/mysql/mysql-connector-java/5.1.45/mysql-connector-java-5.1.45.jar" />
+	<context id="testTables" targetRuntime="MyBatis3">
+
+		<property name="beginningDelimiter" value="`" />
+		<property name="endingDelimiter" value="`" />
+		<!-- 指定生成的java文件的编码,没有直接生成到项目时中文可能会乱码 -->
+		<property name="javaFileEncoding" value="UTF-8" />
+		<property name="mergeable" value="false"></property>
+		<commentGenerator>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://192.168.10.144:3306/user_center"
+			userId="root" password="root">
+		</jdbcConnection>
+
+		<!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 
+			和 NUMERIC 类型解析为java.math.BigDecimal -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- targetProject:生成PO类的位置 -->
+		<javaModelGenerator
+			targetPackage="com.bichuang.usercenter.repository.model"
+			targetProject="F:\usercenter\src\main\java\">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="true" />
+			<!-- 从数据库返回的值被清理前后的空格 -->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- targetProject:mapper映射文件生成的位置 -->
+		<sqlMapGenerator targetPackage="mapper"
+			targetProject="F:\usercenter\src\main\resources\">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+		<!-- targetPackage：mapper接口生成的位置 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.bichuang.usercenter.repository.mapper"
+			targetProject="F:\usercenter\src\main\java\">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+		<!-- 指定数据库表 -->
+		<table tableName="t_user_sys_identity"
+			domainObjectName="UserSysIdentity" delimitIdentifiers="true"
+			delimitAllColumns="true" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+			<property name="rootClass"
+				value="com.bichuang.usercenter.repository.model.BaseEntity" />
+		</table>
+
+
+		<table tableName="t_user_populouspro_c"
+			domainObjectName="UserPopulousProC" delimitIdentifiers="true"
+			delimitAllColumns="true" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+			<property name="rootClass"
+				value="com.bichuang.usercenter.repository.model.BaseEntity" />
+		</table>
+
+		<table tableName="t_user_sys_role_b"
+			domainObjectName="UserSysRoleB" delimitIdentifiers="true"
+			delimitAllColumns="true" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+			<property name="rootClass"
+				value="com.bichuang.usercenter.repository.model.BaseEntity" />
+		</table>
+
+		<table tableName="t_user_populouspro_b"
+			domainObjectName="UserPopulousProB" delimitIdentifiers="true"
+			delimitAllColumns="true" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+			<property name="rootClass"
+				value="com.bichuang.usercenter.repository.model.BaseEntity" />
+		</table>
+
+	</context>
+</generatorConfiguration>

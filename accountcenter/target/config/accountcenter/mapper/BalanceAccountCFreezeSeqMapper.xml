@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bichuang.accountcenter.repository.mapper.BalanceAccountCFreezeSeqMapper">
+  <resultMap id="BaseResultMap" type="com.bichuang.accountcenter.repository.model.BalanceAccountCFreezeSeq">
+    <id column="SN" jdbcType="VARCHAR" property="sn" />
+    <result column="Cust_Id" jdbcType="VARCHAR" property="custId" />
+    <result column="Account_Type" jdbcType="VARCHAR" property="accountType" />
+    <result column="Cust_Name" jdbcType="VARCHAR" property="custName" />
+    <result column="Freeze_Cash_Amout" jdbcType="BIGINT" property="freezeCashAmout" />
+    <result column="Freeze_UnCash_ Amount" jdbcType="BIGINT" property="freezeUncashAmount" />
+    <result column="Change_Type" jdbcType="CHAR" property="changeType" />
+    <result column="ORGSN" jdbcType="VARCHAR" property="orgsn" />
+    <result column="ORGBATCHID" jdbcType="VARCHAR" property="orgbatchid" />
+    <result column="CREATE_TIME" jdbcType="DATE" property="createTime" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="WORKDATE" jdbcType="VARCHAR" property="workdate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `SN`, `Cust_Id`, `Account_Type`, `Cust_Name`, `Freeze_Cash_Amout`, `Freeze_UnCash_ Amount`, 
+    `Change_Type`, `ORGSN`, `ORGBATCHID`, `CREATE_TIME`, `NOTE`, `WORKDATE`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `t_bc_c_freeze_seq`
+    where `SN` = #{sn,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from `t_bc_c_freeze_seq`
+    where `SN` = #{sn,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountCFreezeSeq">
+    insert into `t_bc_c_freeze_seq` (`SN`, `Cust_Id`, `Account_Type`, 
+      `Cust_Name`, `Freeze_Cash_Amout`, `Freeze_UnCash_ Amount`, 
+      `Change_Type`, `ORGSN`, `ORGBATCHID`, 
+      `CREATE_TIME`, `NOTE`, `WORKDATE`
+      )
+    values (#{sn,jdbcType=VARCHAR}, #{custId,jdbcType=VARCHAR}, #{accountType,jdbcType=VARCHAR}, 
+      #{custName,jdbcType=VARCHAR}, #{freezeCashAmout,jdbcType=BIGINT}, #{freezeUncashAmount,jdbcType=BIGINT}, 
+      #{changeType,jdbcType=CHAR}, #{orgsn,jdbcType=VARCHAR}, #{orgbatchid,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=DATE}, #{note,jdbcType=VARCHAR}, #{workdate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountCFreezeSeq">
+    insert into `t_bc_c_freeze_seq`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sn != null">
+        `SN`,
+      </if>
+      <if test="custId != null">
+        `Cust_Id`,
+      </if>
+      <if test="accountType != null">
+        `Account_Type`,
+      </if>
+      <if test="custName != null">
+        `Cust_Name`,
+      </if>
+      <if test="freezeCashAmout != null">
+        `Freeze_Cash_Amout`,
+      </if>
+      <if test="freezeUncashAmount != null">
+        `Freeze_UnCash_ Amount`,
+      </if>
+      <if test="changeType != null">
+        `Change_Type`,
+      </if>
+      <if test="orgsn != null">
+        `ORGSN`,
+      </if>
+      <if test="orgbatchid != null">
+        `ORGBATCHID`,
+      </if>
+      <if test="createTime != null">
+        `CREATE_TIME`,
+      </if>
+      <if test="note != null">
+        `NOTE`,
+      </if>
+      <if test="workdate != null">
+        `WORKDATE`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sn != null">
+        #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null">
+        #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null">
+        #{accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null">
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="freezeCashAmout != null">
+        #{freezeCashAmout,jdbcType=BIGINT},
+      </if>
+      <if test="freezeUncashAmount != null">
+        #{freezeUncashAmount,jdbcType=BIGINT},
+      </if>
+      <if test="changeType != null">
+        #{changeType,jdbcType=CHAR},
+      </if>
+      <if test="orgsn != null">
+        #{orgsn,jdbcType=VARCHAR},
+      </if>
+      <if test="orgbatchid != null">
+        #{orgbatchid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="workdate != null">
+        #{workdate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountCFreezeSeq">
+    update `t_bc_c_freeze_seq`
+    <set>
+      <if test="custId != null">
+        `Cust_Id` = #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null">
+        `Account_Type` = #{accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null">
+        `Cust_Name` = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="freezeCashAmout != null">
+        `Freeze_Cash_Amout` = #{freezeCashAmout,jdbcType=BIGINT},
+      </if>
+      <if test="freezeUncashAmount != null">
+        `Freeze_UnCash_ Amount` = #{freezeUncashAmount,jdbcType=BIGINT},
+      </if>
+      <if test="changeType != null">
+        `Change_Type` = #{changeType,jdbcType=CHAR},
+      </if>
+      <if test="orgsn != null">
+        `ORGSN` = #{orgsn,jdbcType=VARCHAR},
+      </if>
+      <if test="orgbatchid != null">
+        `ORGBATCHID` = #{orgbatchid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        `CREATE_TIME` = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="note != null">
+        `NOTE` = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="workdate != null">
+        `WORKDATE` = #{workdate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `SN` = #{sn,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountCFreezeSeq">
+    update `t_bc_c_freeze_seq`
+    set `Cust_Id` = #{custId,jdbcType=VARCHAR},
+      `Account_Type` = #{accountType,jdbcType=VARCHAR},
+      `Cust_Name` = #{custName,jdbcType=VARCHAR},
+      `Freeze_Cash_Amout` = #{freezeCashAmout,jdbcType=BIGINT},
+      `Freeze_UnCash_ Amount` = #{freezeUncashAmount,jdbcType=BIGINT},
+      `Change_Type` = #{changeType,jdbcType=CHAR},
+      `ORGSN` = #{orgsn,jdbcType=VARCHAR},
+      `ORGBATCHID` = #{orgbatchid,jdbcType=VARCHAR},
+      `CREATE_TIME` = #{createTime,jdbcType=DATE},
+      `NOTE` = #{note,jdbcType=VARCHAR},
+      `WORKDATE` = #{workdate,jdbcType=VARCHAR}
+    where `SN` = #{sn,jdbcType=VARCHAR}
+  </update>
+</mapper>

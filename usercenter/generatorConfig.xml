@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- 添加本地JDBCjar包-陈王五的路径 -->
+	<!-- <classPathEntry location="F:/MAVEN-funsales-repository/mysql/mysql-connector-java/5.1.44/mysql-connector-java-5.1.44.jar" 
+		/> -->
+	<!-- 添加本地JDBCjar包-张泽标的路径 -->
+	<classPathEntry
+		location="F:/MAVEN-ad-repository/mysql/mysql-connector-java/5.1.44/mysql-connector-java-5.1.44.jar" />
+	<context id="testTables" targetRuntime="MyBatis3">
+
+		<property name="beginningDelimiter" value="`" />
+		<property name="endingDelimiter" value="`" />
+		<!-- 指定生成的java文件的编码,没有直接生成到项目时中文可能会乱码 -->
+		<property name="javaFileEncoding" value="UTF-8" />
+		<commentGenerator>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+		<!-- <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@150.16.17.22:1521/wsbs" 
+			userId="hr" password="hr123"> </jdbcConnection> -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://192.168.10.144:3306/usercenter"
+			userId="root" password="root">
+		</jdbcConnection>
+
+		<!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 
+			和 NUMERIC 类型解析为java.math.BigDecimal -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- targetProject:生成PO类的位置 -->
+
+		<javaModelGenerator
+			targetPackage="com.bichuang.usercenter.repository.model"
+			targetProject="usercenter\src\main\java">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="true" />
+			<!-- 从数据库返回的值被清理前后的空格 -->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- targetProject:mapper映射文件生成的位置 -->
+		<sqlMapGenerator targetPackage="mapper"
+			targetProject="usercenter\src\main\resources">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+		<!-- targetPackage：mapper接口生成的位置 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.bichuang.usercenter.repository.mapper"
+			targetProject="usercenter\src\main\java\">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+		<!-- 指定数据库表 -->
+		<!--<table tableName="items"></table> -->
+		<!-- <table tableName="t_usermange_user" domainObjectName="usermangeUser" 
+			></table> -->
+		<!-- 列出要生成代码的所有表，这里配置的是不生成Example文件 -->
+		<!-- <table tableName="t_bank_info" domainObjectName="BankInfo" delimitIdentifiers="true" 
+			delimitAllColumns="true" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" 
+			> <property name="useActualColumnNames" value="false"/> <property name="rootClass" 
+			value="com.rudao.advertisingplatform.repository.model.BaseEntity" /> </table> -->
+
+		<!-- <table tableName="t_sys_file" domainObjectName="SysFile" delimitIdentifiers="true" 
+			delimitAllColumns="true" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" 
+			> <property name="useActualColumnNames" value="false"/> </table> -->
+
+		<!-- <table tableName="t_sys_menu" domainObjectName="SysMenu" delimitIdentifiers="true" 
+			delimitAllColumns="true" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" 
+			> <property name="useActualColumnNames" value="false"/> </table> -->
+
+		<!-- <table tableName="t_sys_operation" domainObjectName="SysOperation" 
+			delimitIdentifiers="true" delimitAllColumns="true" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false" > <property name="useActualColumnNames" value="false"/> 
+			</table> -->
+
+		<!-- <table tableName="t_sys_page_element" domainObjectName="SysPageElement" 
+			delimitIdentifiers="true" delimitAllColumns="true" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false" > <property name="useActualColumnNames" value="false"/> 
+			</table> -->
+
+		<!-- <table tableName="t_sys_popedom" domainObjectName="SysPopedom" delimitIdentifiers="true" 
+			delimitAllColumns="true" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" 
+			> <property name="useActualColumnNames" value="false"/> </table> -->
+
+		<!-- <table tableName="t_sys_popedom_file_ref" domainObjectName="SysPopedomFilRef" 
+			delimitIdentifiers="true" delimitAllColumns="true" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false" > <property name="useActualColumnNames" value="false"/> 
+			</table> -->
+
+		<!-- <table tableName="t_sys_popedom_menu_ref" domainObjectName="SysPopedomMenuRef" 
+			delimitIdentifiers="true" delimitAllColumns="true" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false" > <property name="useActualColumnNames" value="false"/> 
+			</table> -->
+
+		<!-- <table tableName="t_sys_popedom_operation_ref" domainObjectName="SysPopedomOperationRef" 
+			delimitIdentifiers="true" delimitAllColumns="true" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false" > <property name="useActualColumnNames" value="false"/> 
+			</table> -->
+
+		<!-- <table tableName="t_sys_popedom_page_element_ref" domainObjectName="SysPopedomPageElementRef" 
+			delimitIdentifiers="true" delimitAllColumns="true" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false" > <property name="useActualColumnNames" value="false"/> 
+			</table> -->
+
+		<!-- <table tableName="t_sys_role" domainObjectName="SysRole" delimitIdentifiers="true" 
+			delimitAllColumns="true" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" 
+			> <property name="useActualColumnNames" value="false"/> </table> -->
+
+		<!-- <table tableName="t_sys_role_popedom_ref" domainObjectName="SysRolePopedomRef" 
+			delimitIdentifiers="true" delimitAllColumns="true" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false" > <property name="useActualColumnNames" value="false"/> 
+			</table> -->
+
+		<!-- <table tableName="t_sys_user_group" domainObjectName="SysUserGroup" 
+			delimitIdentifiers="true" delimitAllColumns="true" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false" > <property name="useActualColumnNames" value="false"/> 
+			</table> -->
+
+		<!-- <table tableName="t_sys_user_group_ref" domainObjectName="SysUserGroupRef" 
+			delimitIdentifiers="true" delimitAllColumns="true" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false" > <property name="useActualColumnNames" value="false"/> 
+			</table> -->
+
+		<!-- <table tableName="t_sys_user_group_role_ref" domainObjectName="SysUserGroupRoleRef" 
+			delimitIdentifiers="true" delimitAllColumns="true" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false" > <property name="useActualColumnNames" value="false"/> 
+			</table> -->
+
+		<!-- <table tableName="t_sys_user_identity" domainObjectName="SysUserIdentity" 
+			delimitIdentifiers="true" delimitAllColumns="true" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false" > <property name="useActualColumnNames" value="false"/> 
+			</table> -->
+
+		<!-- <table tableName="t_sys_user_role_ref" domainObjectName="SysUserRoleRef" 
+			delimitIdentifiers="true" delimitAllColumns="true" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false" > <property name="useActualColumnNames" value="false"/> 
+			</table> -->
+
+		<!-- <table tableName="t_system_inlet" domainObjectName="SystemInlet" delimitIdentifiers="true" 
+			delimitAllColumns="true" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" 
+			> <property name="useActualColumnNames" value="false"/> </table> -->
+
+		<!-- <table tableName="t_user_b_extend_agent" domainObjectName="UserBExtendAgent" 
+			delimitIdentifiers="true" delimitAllColumns="true" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false" > <property name="useActualColumnNames" value="false"/> 
+			</table> -->
+
+		<table tableName="t_user_populouspro_b"
+			domainObjectName="UserPopulousProB" delimitIdentifiers="true"
+			delimitAllColumns="true" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table tableName="t_user_populouspro_c"
+			domainObjectName="UserPopulousProC" delimitIdentifiers="true"
+			delimitAllColumns="true" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<!-- <table tableName="t_biz_type" domainObjectName="BizType" delimitIdentifiers="true" 
+			delimitAllColumns="true" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" 
+			> <property name="useActualColumnNames" value="false"/> </table> -->
+
+		<!-- <table tableName="t_user_system_inlet_ref" domainObjectName="UserSystemInletRef" 
+			delimitIdentifiers="true" delimitAllColumns="true" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false" > <property name="useActualColumnNames" value="false"/> 
+			</table> -->
+
+
+
+
+	</context>
+</generatorConfiguration>

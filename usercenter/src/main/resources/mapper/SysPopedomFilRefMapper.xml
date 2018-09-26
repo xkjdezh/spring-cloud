@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.bichuang.usercenter.repository.mapper.SysPopedomFilRefMapper">
+	<resultMap id="BaseResultMap"
+		type="com.bichuang.usercenter.repository.model.SysPopedomFilRef">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="popedom_id" jdbcType="INTEGER"
+			property="popedomId" />
+		<result column="file_id" jdbcType="INTEGER" property="fileId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		`id`, `popedom_id`, `file_id`
+	</sql>
+	<select id="selectByPrimaryKey"
+		parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from `t_sys_popedom_file_ref`
+		where `id` = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from `t_sys_popedom_file_ref`
+		where `id` = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="com.bichuang.usercenter.repository.model.SysPopedomFilRef">
+		insert into `t_sys_popedom_file_ref` (`id`, `popedom_id`, `file_id`
+		)
+		values (#{id,jdbcType=INTEGER}, #{popedomId,jdbcType=INTEGER},
+		#{fileId,jdbcType=INTEGER}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.bichuang.usercenter.repository.model.SysPopedomFilRef">
+		insert into `t_sys_popedom_file_ref`
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				`id`,
+			</if>
+			<if test="popedomId != null">
+				`popedom_id`,
+			</if>
+			<if test="fileId != null">
+				`file_id`,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="popedomId != null">
+				#{popedomId,jdbcType=INTEGER},
+			</if>
+			<if test="fileId != null">
+				#{fileId,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.bichuang.usercenter.repository.model.SysPopedomFilRef">
+		update `t_sys_popedom_file_ref`
+		<set>
+			<if test="popedomId != null">
+				`popedom_id` = #{popedomId,jdbcType=INTEGER},
+			</if>
+			<if test="fileId != null">
+				`file_id` = #{fileId,jdbcType=INTEGER},
+			</if>
+		</set>
+		where `id` = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.bichuang.usercenter.repository.model.SysPopedomFilRef">
+		update `t_sys_popedom_file_ref`
+		set `popedom_id` = #{popedomId,jdbcType=INTEGER},
+		`file_id` = #{fileId,jdbcType=INTEGER}
+		where `id` = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

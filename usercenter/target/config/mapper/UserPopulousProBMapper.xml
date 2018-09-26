@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.bichuang.usercenter.repository.mapper.UserPopulousProBMapper">
+	<resultMap id="BaseResultMap"
+		type="com.bichuang.usercenter.repository.model.UserPopulousProB">
+		<id column="user_id" jdbcType="INTEGER" property="userId" />
+		<result column="address" jdbcType="VARCHAR" property="address" />
+		<result column="brand" jdbcType="VARCHAR" property="brand" />
+		<result column="company_name" jdbcType="VARCHAR"
+			property="companyName" />
+		<result column="biz_type_id" jdbcType="INTEGER"
+			property="bizTypeId" />
+		<result column="b_extend_id" jdbcType="INTEGER"
+			property="bExtendId" />
+		<result column="real_name" jdbcType="VARCHAR"
+			property="realName" />
+		<result column="sexy" jdbcType="BIT" property="sexy" />
+		<result column="create_by" jdbcType="INTEGER"
+			property="createBy" />
+		<result column="create_time" jdbcType="TIMESTAMP"
+			property="createTime" />
+		<result column="update_by" jdbcType="INTEGER"
+			property="updateBy" />
+		<result column="update_time" jdbcType="TIMESTAMP"
+			property="updateTime" />
+		<result column="data_status" jdbcType="INTEGER"
+			property="dataStatus" />
+		<result column="area" jdbcType="VARCHAR" property="area" />
+		<result column="detail_address" jdbcType="VARCHAR"
+			property="detailAddress" />
+		<result column="last_login_time" jdbcType="TIMESTAMP"
+			property="lastLoginTime" />
+		<result column="idcard" jdbcType="VARCHAR" property="idcard" />
+		<result column="idcard_front_photo_url" jdbcType="VARCHAR"
+			property="idcardFrontPhotoUrl" />
+		<result column="idcard_reverse_photo_url" jdbcType="VARCHAR"
+			property="idcardReversePhotoUrl" />
+		<result column="bank_car_info" jdbcType="VARCHAR"
+			property="bankCarInfo" />
+		<result column="bank_info_id" jdbcType="INTEGER"
+			property="bankInfoId" />
+		<result column="bank_car_number" jdbcType="VARCHAR"
+			property="bankCarNumber" />
+		<result column="mailbox" jdbcType="VARCHAR" property="mailbox" />
+		<result column="qualifications_type" jdbcType="INTEGER"
+			property="qualificationsType" />
+		<result column="credit_advise" jdbcType="INTEGER"
+			property="creditAdvise" />
+		<result column="credit_code" jdbcType="VARCHAR"
+			property="creditCode" />
+		<result column="credit_query_results_url" jdbcType="VARCHAR"
+			property="creditQueryResultsUrl" />
+		<result column="license_id_photo_url" jdbcType="VARCHAR"
+			property="licenseIdPhotoUrl" />
+		<result column="license_code" jdbcType="VARCHAR"
+			property="licenseCode" />
+		<result column="license_register" jdbcType="VARCHAR"
+			property="licenseRegister" />
+		<result column="credit_query_results_file_name"
+			jdbcType="VARCHAR" property="creditQueryResultsFileName" />
+		<result column="license_id_photo_file_name" jdbcType="VARCHAR"
+			property="licenseIdPhotoFileName" />
+		<result column="audit_status" jdbcType="INTEGER"
+			property="auditStatus" />
+		<result column="audit_by" jdbcType="INTEGER" property="auditBy" />
+		<result column="audit_by_name" jdbcType="VARCHAR"
+			property="auditByName" />
+		<result column="audit_time" jdbcType="TIMESTAMP"
+			property="auditTime" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		`user_id`, `address`, `brand`, `company_name`, `biz_type_id`, `b_extend_id`,
+		`real_name`,
+		`sexy`, `create_by`, `create_time`, `update_by`, `update_time`,
+		`data_status`, `area`,
+		`detail_address`, `last_login_time`, `idcard`, `idcard_front_photo_url`,
+		`idcard_reverse_photo_url`,
+		`bank_car_info`, `bank_info_id`, `bank_car_number`, `mailbox`, `qualifications_type`,
+		`credit_advise`, `credit_code`, `credit_query_results_url`,
+		`license_id_photo_url`,
+		`license_code`, `license_register`, `credit_query_results_file_name`,
+		`license_id_photo_file_name`,
+		`audit_status`, `audit_by`, `audit_by_name`, `audit_time`, `remark`
+	</sql>
+	<select id="selectByPrimaryKey"
+		parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from `t_user_populouspro_b`
+		where `user_id` = #{userId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from `t_user_populouspro_b`
+		where `user_id` = #{userId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="com.bichuang.usercenter.repository.model.UserPopulousProB">
+		insert into `t_user_populouspro_b` (`user_id`, `address`, `brand`,
+		`company_name`, `biz_type_id`, `b_extend_id`,
+		`real_name`, `sexy`, `create_by`,
+		`create_time`, `update_by`, `update_time`,
+		`data_status`, `area`, `detail_address`,
+		`last_login_time`, `idcard`, `idcard_front_photo_url`,
+		`idcard_reverse_photo_url`, `bank_car_info`, `bank_info_id`,
+		`bank_car_number`, `mailbox`, `qualifications_type`,
+		`credit_advise`, `credit_code`, `credit_query_results_url`,
+		`license_id_photo_url`, `license_code`, `license_register`,
+		`credit_query_results_file_name`, `license_id_photo_file_name`,
+		`audit_status`, `audit_by`, `audit_by_name`,
+		`audit_time`, `remark`)
+		values (#{userId,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR},
+		#{brand,jdbcType=VARCHAR},
+		#{companyName,jdbcType=VARCHAR}, #{bizTypeId,jdbcType=INTEGER}, #{bExtendId,jdbcType=INTEGER},
+		#{realName,jdbcType=VARCHAR}, #{sexy,jdbcType=BIT},
+		#{createBy,jdbcType=INTEGER},
+		#{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP},
+		#{dataStatus,jdbcType=INTEGER}, #{area,jdbcType=VARCHAR},
+		#{detailAddress,jdbcType=VARCHAR},
+		#{lastLoginTime,jdbcType=TIMESTAMP}, #{idcard,jdbcType=VARCHAR},
+		#{idcardFrontPhotoUrl,jdbcType=VARCHAR},
+		#{idcardReversePhotoUrl,jdbcType=VARCHAR},
+		#{bankCarInfo,jdbcType=VARCHAR}, #{bankInfoId,jdbcType=INTEGER},
+		#{bankCarNumber,jdbcType=VARCHAR}, #{mailbox,jdbcType=VARCHAR},
+		#{qualificationsType,jdbcType=INTEGER},
+		#{creditAdvise,jdbcType=INTEGER}, #{creditCode,jdbcType=VARCHAR},
+		#{creditQueryResultsUrl,jdbcType=VARCHAR},
+		#{licenseIdPhotoUrl,jdbcType=VARCHAR},
+		#{licenseCode,jdbcType=VARCHAR}, #{licenseRegister,jdbcType=VARCHAR},
+		#{creditQueryResultsFileName,jdbcType=VARCHAR},
+		#{licenseIdPhotoFileName,jdbcType=VARCHAR},
+		#{auditStatus,jdbcType=INTEGER}, #{auditBy,jdbcType=INTEGER},
+		#{auditByName,jdbcType=VARCHAR},
+		#{auditTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.bichuang.usercenter.repository.model.UserPopulousProB">
+		insert into `t_user_populouspro_b`
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				`user_id`,
+			</if>
+			<if test="address != null">
+				`address`,
+			</if>
+			<if test="brand != null">
+				`brand`,
+			</if>
+			<if test="companyName != null">
+				`company_name`,
+			</if>
+			<if test="bizTypeId != null">
+				`biz_type_id`,
+			</if>
+			<if test="bExtendId != null">
+				`b_extend_id`,
+			</if>
+			<if test="realName != null">
+				`real_name`,
+			</if>
+			<if test="sexy != null">
+				`sexy`,
+			</if>
+			<if test="createBy != null">
+				`create_by`,
+			</if>
+			<if test="createTime != null">
+				`create_time`,
+			</if>
+			<if test="updateBy != null">
+				`update_by`,
+			</if>
+			<if test="updateTime != null">
+				`update_time`,
+			</if>
+			<if test="dataStatus != null">
+				`data_status`,
+			</if>
+			<if test="area != null">
+				`area`,
+			</if>
+			<if test="detailAddress != null">
+				`detail_address`,
+			</if>
+			<if test="lastLoginTime != null">
+				`last_login_time`,
+			</if>
+			<if test="idcard != null">
+				`idcard`,
+			</if>
+			<if test="idcardFrontPhotoUrl != null">
+				`idcard_front_photo_url`,
+			</if>
+			<if test="idcardReversePhotoUrl != null">
+				`idcard_reverse_photo_url`,
+			</if>
+			<if test="bankCarInfo != null">
+				`bank_car_info`,
+			</if>
+			<if test="bankInfoId != null">
+				`bank_info_id`,
+			</if>
+			<if test="bankCarNumber != null">
+				`bank_car_number`,
+			</if>
+			<if test="mailbox != null">
+				`mailbox`,
+			</if>
+			<if test="qualificationsType != null">
+				`qualifications_type`,
+			</if>
+			<if test="creditAdvise != null">
+				`credit_advise`,
+			</if>
+			<if test="creditCode != null">
+				`credit_code`,
+			</if>
+			<if test="creditQueryResultsUrl != null">
+				`credit_query_results_url`,
+			</if>
+			<if test="licenseIdPhotoUrl != null">
+				`license_id_photo_url`,
+			</if>
+			<if test="licenseCode != null">
+				`license_code`,
+			</if>
+			<if test="licenseRegister != null">
+				`license_register`,
+			</if>
+			<if test="creditQueryResultsFileName != null">
+				`credit_query_results_file_name`,
+			</if>
+			<if test="licenseIdPhotoFileName != null">
+				`license_id_photo_file_name`,
+			</if>
+			<if test="auditStatus != null">
+				`audit_status`,
+			</if>
+			<if test="auditBy != null">
+				`audit_by`,
+			</if>
+			<if test="auditByName != null">
+				`audit_by_name`,
+			</if>
+			<if test="auditTime != null">
+				`audit_time`,
+			</if>
+			<if test="remark != null">
+				`remark`,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="brand != null">
+				#{brand,jdbcType=VARCHAR},
+			</if>
+			<if test="companyName != null">
+				#{companyName,jdbcType=VARCHAR},
+			</if>
+			<if test="bizTypeId != null">
+				#{bizTypeId,jdbcType=INTEGER},
+			</if>
+			<if test="bExtendId != null">
+				#{bExtendId,jdbcType=INTEGER},
+			</if>
+			<if test="realName != null">
+				#{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="sexy != null">
+				#{sexy,jdbcType=BIT},
+			</if>
+			<if test="createBy != null">
+				#{createBy,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				#{updateBy,jdbcType=INTEGER},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="dataStatus != null">
+				#{dataStatus,jdbcType=INTEGER},
+			</if>
+			<if test="area != null">
+				#{area,jdbcType=VARCHAR},
+			</if>
+			<if test="detailAddress != null">
+				#{detailAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="lastLoginTime != null">
+				#{lastLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="idcard != null">
+				#{idcard,jdbcType=VARCHAR},
+			</if>
+			<if test="idcardFrontPhotoUrl != null">
+				#{idcardFrontPhotoUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="idcardReversePhotoUrl != null">
+				#{idcardReversePhotoUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCarInfo != null">
+				#{bankCarInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="bankInfoId != null">
+				#{bankInfoId,jdbcType=INTEGER},
+			</if>
+			<if test="bankCarNumber != null">
+				#{bankCarNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="mailbox != null">
+				#{mailbox,jdbcType=VARCHAR},
+			</if>
+			<if test="qualificationsType != null">
+				#{qualificationsType,jdbcType=INTEGER},
+			</if>
+			<if test="creditAdvise != null">
+				#{creditAdvise,jdbcType=INTEGER},
+			</if>
+			<if test="creditCode != null">
+				#{creditCode,jdbcType=VARCHAR},
+			</if>
+			<if test="creditQueryResultsUrl != null">
+				#{creditQueryResultsUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="licenseIdPhotoUrl != null">
+				#{licenseIdPhotoUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="licenseCode != null">
+				#{licenseCode,jdbcType=VARCHAR},
+			</if>
+			<if test="licenseRegister != null">
+				#{licenseRegister,jdbcType=VARCHAR},
+			</if>
+			<if test="creditQueryResultsFileName != null">
+				#{creditQueryResultsFileName,jdbcType=VARCHAR},
+			</if>
+			<if test="licenseIdPhotoFileName != null">
+				#{licenseIdPhotoFileName,jdbcType=VARCHAR},
+			</if>
+			<if test="auditStatus != null">
+				#{auditStatus,jdbcType=INTEGER},
+			</if>
+			<if test="auditBy != null">
+				#{auditBy,jdbcType=INTEGER},
+			</if>
+			<if test="auditByName != null">
+				#{auditByName,jdbcType=VARCHAR},
+			</if>
+			<if test="auditTime != null">
+				#{auditTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.bichuang.usercenter.repository.model.UserPopulousProB">
+		update `t_user_populouspro_b`
+		<set>
+			<if test="address != null">
+				`address` = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="brand != null">
+				`brand` = #{brand,jdbcType=VARCHAR},
+			</if>
+			<if test="companyName != null">
+				`company_name` = #{companyName,jdbcType=VARCHAR},
+			</if>
+			<if test="bizTypeId != null">
+				`biz_type_id` = #{bizTypeId,jdbcType=INTEGER},
+			</if>
+			<if test="bExtendId != null">
+				`b_extend_id` = #{bExtendId,jdbcType=INTEGER},
+			</if>
+			<if test="realName != null">
+				`real_name` = #{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="sexy != null">
+				`sexy` = #{sexy,jdbcType=BIT},
+			</if>
+			<if test="createBy != null">
+				`create_by` = #{createBy,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				`create_time` = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				`update_by` = #{updateBy,jdbcType=INTEGER},
+			</if>
+			<if test="updateTime != null">
+				`update_time` = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="dataStatus != null">
+				`data_status` = #{dataStatus,jdbcType=INTEGER},
+			</if>
+			<if test="area != null">
+				`area` = #{area,jdbcType=VARCHAR},
+			</if>
+			<if test="detailAddress != null">
+				`detail_address` = #{detailAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="lastLoginTime != null">
+				`last_login_time` = #{lastLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="idcard != null">
+				`idcard` = #{idcard,jdbcType=VARCHAR},
+			</if>
+			<if test="idcardFrontPhotoUrl != null">
+				`idcard_front_photo_url` = #{idcardFrontPhotoUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="idcardReversePhotoUrl != null">
+				`idcard_reverse_photo_url` = #{idcardReversePhotoUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCarInfo != null">
+				`bank_car_info` = #{bankCarInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="bankInfoId != null">
+				`bank_info_id` = #{bankInfoId,jdbcType=INTEGER},
+			</if>
+			<if test="bankCarNumber != null">
+				`bank_car_number` = #{bankCarNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="mailbox != null">
+				`mailbox` = #{mailbox,jdbcType=VARCHAR},
+			</if>
+			<if test="qualificationsType != null">
+				`qualifications_type` = #{qualificationsType,jdbcType=INTEGER},
+			</if>
+			<if test="creditAdvise != null">
+				`credit_advise` = #{creditAdvise,jdbcType=INTEGER},
+			</if>
+			<if test="creditCode != null">
+				`credit_code` = #{creditCode,jdbcType=VARCHAR},
+			</if>
+			<if test="creditQueryResultsUrl != null">
+				`credit_query_results_url` = #{creditQueryResultsUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="licenseIdPhotoUrl != null">
+				`license_id_photo_url` = #{licenseIdPhotoUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="licenseCode != null">
+				`license_code` = #{licenseCode,jdbcType=VARCHAR},
+			</if>
+			<if test="licenseRegister != null">
+				`license_register` = #{licenseRegister,jdbcType=VARCHAR},
+			</if>
+			<if test="creditQueryResultsFileName != null">
+				`credit_query_results_file_name` = #{creditQueryResultsFileName,jdbcType=VARCHAR},
+			</if>
+			<if test="licenseIdPhotoFileName != null">
+				`license_id_photo_file_name` = #{licenseIdPhotoFileName,jdbcType=VARCHAR},
+			</if>
+			<if test="auditStatus != null">
+				`audit_status` = #{auditStatus,jdbcType=INTEGER},
+			</if>
+			<if test="auditBy != null">
+				`audit_by` = #{auditBy,jdbcType=INTEGER},
+			</if>
+			<if test="auditByName != null">
+				`audit_by_name` = #{auditByName,jdbcType=VARCHAR},
+			</if>
+			<if test="auditTime != null">
+				`audit_time` = #{auditTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				`remark` = #{remark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where `user_id` = #{userId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.bichuang.usercenter.repository.model.UserPopulousProB">
+		update `t_user_populouspro_b`
+		set `address` = #{address,jdbcType=VARCHAR},
+		`brand` = #{brand,jdbcType=VARCHAR},
+		`company_name` = #{companyName,jdbcType=VARCHAR},
+		`biz_type_id` = #{bizTypeId,jdbcType=INTEGER},
+		`b_extend_id` = #{bExtendId,jdbcType=INTEGER},
+		`real_name` = #{realName,jdbcType=VARCHAR},
+		`sexy` = #{sexy,jdbcType=BIT},
+		`create_by` = #{createBy,jdbcType=INTEGER},
+		`create_time` = #{createTime,jdbcType=TIMESTAMP},
+		`update_by` = #{updateBy,jdbcType=INTEGER},
+		`update_time` = #{updateTime,jdbcType=TIMESTAMP},
+		`data_status` = #{dataStatus,jdbcType=INTEGER},
+		`area` = #{area,jdbcType=VARCHAR},
+		`detail_address` = #{detailAddress,jdbcType=VARCHAR},
+		`last_login_time` = #{lastLoginTime,jdbcType=TIMESTAMP},
+		`idcard` = #{idcard,jdbcType=VARCHAR},
+		`idcard_front_photo_url` = #{idcardFrontPhotoUrl,jdbcType=VARCHAR},
+		`idcard_reverse_photo_url` = #{idcardReversePhotoUrl,jdbcType=VARCHAR},
+		`bank_car_info` = #{bankCarInfo,jdbcType=VARCHAR},
+		`bank_info_id` = #{bankInfoId,jdbcType=INTEGER},
+		`bank_car_number` = #{bankCarNumber,jdbcType=VARCHAR},
+		`mailbox` = #{mailbox,jdbcType=VARCHAR},
+		`qualifications_type` = #{qualificationsType,jdbcType=INTEGER},
+		`credit_advise` = #{creditAdvise,jdbcType=INTEGER},
+		`credit_code` = #{creditCode,jdbcType=VARCHAR},
+		`credit_query_results_url` = #{creditQueryResultsUrl,jdbcType=VARCHAR},
+		`license_id_photo_url` = #{licenseIdPhotoUrl,jdbcType=VARCHAR},
+		`license_code` = #{licenseCode,jdbcType=VARCHAR},
+		`license_register` = #{licenseRegister,jdbcType=VARCHAR},
+		`credit_query_results_file_name` =
+		#{creditQueryResultsFileName,jdbcType=VARCHAR},
+		`license_id_photo_file_name` =
+		#{licenseIdPhotoFileName,jdbcType=VARCHAR},
+		`audit_status` = #{auditStatus,jdbcType=INTEGER},
+		`audit_by` = #{auditBy,jdbcType=INTEGER},
+		`audit_by_name` = #{auditByName,jdbcType=VARCHAR},
+		`audit_time` = #{auditTime,jdbcType=TIMESTAMP},
+		`remark` = #{remark,jdbcType=VARCHAR}
+		where `user_id` = #{userId,jdbcType=INTEGER}
+	</update>
+</mapper>

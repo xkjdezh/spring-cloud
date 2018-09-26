@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.bichuang.usercenter.repository.mapper.UserPopulousProCMapper">
+	<resultMap id="BaseResultMap"
+		type="com.bichuang.usercenter.repository.model.UserPopulousProC">
+		<id column="user_id" jdbcType="INTEGER" property="userId" />
+		<result column="idcard" jdbcType="CHAR" property="idcard" />
+		<result column="sexy" jdbcType="BIT" property="sexy" />
+		<result column="age" jdbcType="INTEGER" property="age" />
+		<result column="adress" jdbcType="VARCHAR" property="adress" />
+		<result column="real_name" jdbcType="VARCHAR"
+			property="realName" />
+		<result column="data_status" jdbcType="INTEGER"
+			property="dataStatus" />
+		<result column="user_no" jdbcType="VARCHAR" property="userNo" />
+		<result column="nick_name" jdbcType="VARCHAR"
+			property="nickName" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="introducer_mobile" jdbcType="VARCHAR"
+			property="introducerMobile" />
+		<result column="user_channel" jdbcType="VARCHAR"
+			property="userChannel" />
+		<result column="user_channel_media" jdbcType="VARCHAR"
+			property="userChannelMedia" />
+		<result column="last_login_time" jdbcType="TIMESTAMP"
+			property="lastLoginTime" />
+		<result column="login_pwd_modify_delay" jdbcType="INTEGER"
+			property="loginPwdModifyDelay" />
+		<result column="login_pwd_modify_time" jdbcType="TIMESTAMP"
+			property="loginPwdModifyTime" />
+		<result column="create_by" jdbcType="INTEGER"
+			property="createBy" />
+		<result column="create_time" jdbcType="TIMESTAMP"
+			property="createTime" />
+		<result column="update_by" jdbcType="INTEGER"
+			property="updateBy" />
+		<result column="update_time" jdbcType="TIMESTAMP"
+			property="updateTime" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		`user_id`, `idcard`, `sexy`, `age`, `adress`, `real_name`, `data_status`,
+		`user_no`,
+		`nick_name`, `status`, `introducer_mobile`, `user_channel`, `user_channel_media`,
+		`last_login_time`, `login_pwd_modify_delay`, `login_pwd_modify_time`,
+		`create_by`,
+		`create_time`, `update_by`, `update_time`, `remark`
+	</sql>
+	<select id="selectByPrimaryKey"
+		parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from `t_user_populouspro_c`
+		where `user_id` = #{userId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from `t_user_populouspro_c`
+		where `user_id` = #{userId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="com.bichuang.usercenter.repository.model.UserPopulousProC">
+		insert into `t_user_populouspro_c` (`user_id`, `idcard`, `sexy`,
+		`age`, `adress`, `real_name`,
+		`data_status`, `user_no`, `nick_name`,
+		`status`, `introducer_mobile`, `user_channel`,
+		`user_channel_media`, `last_login_time`, `login_pwd_modify_delay`,
+		`login_pwd_modify_time`, `create_by`, `create_time`,
+		`update_by`, `update_time`, `remark`
+		)
+		values (#{userId,jdbcType=INTEGER}, #{idcard,jdbcType=CHAR},
+		#{sexy,jdbcType=BIT},
+		#{age,jdbcType=INTEGER}, #{adress,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR},
+		#{dataStatus,jdbcType=INTEGER}, #{userNo,jdbcType=VARCHAR},
+		#{nickName,jdbcType=VARCHAR},
+		#{status,jdbcType=VARCHAR}, #{introducerMobile,jdbcType=VARCHAR},
+		#{userChannel,jdbcType=VARCHAR},
+		#{userChannelMedia,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP},
+		#{loginPwdModifyDelay,jdbcType=INTEGER},
+		#{loginPwdModifyTime,jdbcType=TIMESTAMP},
+		#{createBy,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+		#{updateBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP},
+		#{remark,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.bichuang.usercenter.repository.model.UserPopulousProC">
+		insert into `t_user_populouspro_c`
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				`user_id`,
+			</if>
+			<if test="idcard != null">
+				`idcard`,
+			</if>
+			<if test="sexy != null">
+				`sexy`,
+			</if>
+			<if test="age != null">
+				`age`,
+			</if>
+			<if test="adress != null">
+				`adress`,
+			</if>
+			<if test="realName != null">
+				`real_name`,
+			</if>
+			<if test="dataStatus != null">
+				`data_status`,
+			</if>
+			<if test="userNo != null">
+				`user_no`,
+			</if>
+			<if test="nickName != null">
+				`nick_name`,
+			</if>
+			<if test="status != null">
+				`status`,
+			</if>
+			<if test="introducerMobile != null">
+				`introducer_mobile`,
+			</if>
+			<if test="userChannel != null">
+				`user_channel`,
+			</if>
+			<if test="userChannelMedia != null">
+				`user_channel_media`,
+			</if>
+			<if test="lastLoginTime != null">
+				`last_login_time`,
+			</if>
+			<if test="loginPwdModifyDelay != null">
+				`login_pwd_modify_delay`,
+			</if>
+			<if test="loginPwdModifyTime != null">
+				`login_pwd_modify_time`,
+			</if>
+			<if test="createBy != null">
+				`create_by`,
+			</if>
+			<if test="createTime != null">
+				`create_time`,
+			</if>
+			<if test="updateBy != null">
+				`update_by`,
+			</if>
+			<if test="updateTime != null">
+				`update_time`,
+			</if>
+			<if test="remark != null">
+				`remark`,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="idcard != null">
+				#{idcard,jdbcType=CHAR},
+			</if>
+			<if test="sexy != null">
+				#{sexy,jdbcType=BIT},
+			</if>
+			<if test="age != null">
+				#{age,jdbcType=INTEGER},
+			</if>
+			<if test="adress != null">
+				#{adress,jdbcType=VARCHAR},
+			</if>
+			<if test="realName != null">
+				#{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="dataStatus != null">
+				#{dataStatus,jdbcType=INTEGER},
+			</if>
+			<if test="userNo != null">
+				#{userNo,jdbcType=VARCHAR},
+			</if>
+			<if test="nickName != null">
+				#{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="introducerMobile != null">
+				#{introducerMobile,jdbcType=VARCHAR},
+			</if>
+			<if test="userChannel != null">
+				#{userChannel,jdbcType=VARCHAR},
+			</if>
+			<if test="userChannelMedia != null">
+				#{userChannelMedia,jdbcType=VARCHAR},
+			</if>
+			<if test="lastLoginTime != null">
+				#{lastLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="loginPwdModifyDelay != null">
+				#{loginPwdModifyDelay,jdbcType=INTEGER},
+			</if>
+			<if test="loginPwdModifyTime != null">
+				#{loginPwdModifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				#{createBy,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				#{updateBy,jdbcType=INTEGER},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.bichuang.usercenter.repository.model.UserPopulousProC">
+		update `t_user_populouspro_c`
+		<set>
+			<if test="idcard != null">
+				`idcard` = #{idcard,jdbcType=CHAR},
+			</if>
+			<if test="sexy != null">
+				`sexy` = #{sexy,jdbcType=BIT},
+			</if>
+			<if test="age != null">
+				`age` = #{age,jdbcType=INTEGER},
+			</if>
+			<if test="adress != null">
+				`adress` = #{adress,jdbcType=VARCHAR},
+			</if>
+			<if test="realName != null">
+				`real_name` = #{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="dataStatus != null">
+				`data_status` = #{dataStatus,jdbcType=INTEGER},
+			</if>
+			<if test="userNo != null">
+				`user_no` = #{userNo,jdbcType=VARCHAR},
+			</if>
+			<if test="nickName != null">
+				`nick_name` = #{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				`status` = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="introducerMobile != null">
+				`introducer_mobile` = #{introducerMobile,jdbcType=VARCHAR},
+			</if>
+			<if test="userChannel != null">
+				`user_channel` = #{userChannel,jdbcType=VARCHAR},
+			</if>
+			<if test="userChannelMedia != null">
+				`user_channel_media` = #{userChannelMedia,jdbcType=VARCHAR},
+			</if>
+			<if test="lastLoginTime != null">
+				`last_login_time` = #{lastLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="loginPwdModifyDelay != null">
+				`login_pwd_modify_delay` = #{loginPwdModifyDelay,jdbcType=INTEGER},
+			</if>
+			<if test="loginPwdModifyTime != null">
+				`login_pwd_modify_time` = #{loginPwdModifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				`create_by` = #{createBy,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				`create_time` = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				`update_by` = #{updateBy,jdbcType=INTEGER},
+			</if>
+			<if test="updateTime != null">
+				`update_time` = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				`remark` = #{remark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where `user_id` = #{userId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.bichuang.usercenter.repository.model.UserPopulousProC">
+		update `t_user_populouspro_c`
+		set `idcard` = #{idcard,jdbcType=CHAR},
+		`sexy` = #{sexy,jdbcType=BIT},
+		`age` = #{age,jdbcType=INTEGER},
+		`adress` = #{adress,jdbcType=VARCHAR},
+		`real_name` = #{realName,jdbcType=VARCHAR},
+		`data_status` = #{dataStatus,jdbcType=INTEGER},
+		`user_no` = #{userNo,jdbcType=VARCHAR},
+		`nick_name` = #{nickName,jdbcType=VARCHAR},
+		`status` = #{status,jdbcType=VARCHAR},
+		`introducer_mobile` = #{introducerMobile,jdbcType=VARCHAR},
+		`user_channel` = #{userChannel,jdbcType=VARCHAR},
+		`user_channel_media` = #{userChannelMedia,jdbcType=VARCHAR},
+		`last_login_time` = #{lastLoginTime,jdbcType=TIMESTAMP},
+		`login_pwd_modify_delay` = #{loginPwdModifyDelay,jdbcType=INTEGER},
+		`login_pwd_modify_time` = #{loginPwdModifyTime,jdbcType=TIMESTAMP},
+		`create_by` = #{createBy,jdbcType=INTEGER},
+		`create_time` = #{createTime,jdbcType=TIMESTAMP},
+		`update_by` = #{updateBy,jdbcType=INTEGER},
+		`update_time` = #{updateTime,jdbcType=TIMESTAMP},
+		`remark` = #{remark,jdbcType=VARCHAR}
+		where `user_id` = #{userId,jdbcType=INTEGER}
+	</update>
+</mapper>

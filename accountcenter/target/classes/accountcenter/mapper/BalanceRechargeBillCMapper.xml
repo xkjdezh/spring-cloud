@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bichuang.accountcenter.repository.mapper.BalanceRechargeBillCMapper">
+  <resultMap id="BaseResultMap" type="com.bichuang.accountcenter.repository.model.BalanceRechargeBillC">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="cust_id" jdbcType="VARCHAR" property="custId" />
+    <result column="subAccount_type" jdbcType="INTEGER" property="subaccountType" />
+    <result column="cust_name" jdbcType="VARCHAR" property="custName" />
+    <result column="recharge_type" jdbcType="INTEGER" property="rechargeType" />
+    <result column="recharge_amount" jdbcType="DECIMAL" property="rechargeAmount" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="cust_by" jdbcType="VARCHAR" property="custBy" />
+    <result column="bank_type" jdbcType="VARCHAR" property="bankType" />
+    <result column="bank_code" jdbcType="BIT" property="bankCode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `cust_id`, `subAccount_type`, `cust_name`, `recharge_type`, `recharge_amount`, 
+    `create_time`, `cust_by`, `bank_type`, `bank_code`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `t_bc_c_recharge_bill_seq`
+    where `id` = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from `t_bc_c_recharge_bill_seq`
+    where `id` = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bichuang.accountcenter.repository.model.BalanceRechargeBillC">
+    insert into `t_bc_c_recharge_bill_seq` (`id`, `cust_id`, `subAccount_type`, 
+      `cust_name`, `recharge_type`, `recharge_amount`, 
+      `create_time`, `cust_by`, `bank_type`, 
+      `bank_code`)
+    values (#{id,jdbcType=INTEGER}, #{custId,jdbcType=VARCHAR}, #{subaccountType,jdbcType=INTEGER}, 
+      #{custName,jdbcType=VARCHAR}, #{rechargeType,jdbcType=INTEGER}, #{rechargeAmount,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{custBy,jdbcType=VARCHAR}, #{bankType,jdbcType=VARCHAR}, 
+      #{bankCode,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bichuang.accountcenter.repository.model.BalanceRechargeBillC">
+    insert into `t_bc_c_recharge_bill_seq`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="custId != null">
+        `cust_id`,
+      </if>
+      <if test="subaccountType != null">
+        `subAccount_type`,
+      </if>
+      <if test="custName != null">
+        `cust_name`,
+      </if>
+      <if test="rechargeType != null">
+        `recharge_type`,
+      </if>
+      <if test="rechargeAmount != null">
+        `recharge_amount`,
+      </if>
+      <if test="createTime != null">
+        `create_time`,
+      </if>
+      <if test="custBy != null">
+        `cust_by`,
+      </if>
+      <if test="bankType != null">
+        `bank_type`,
+      </if>
+      <if test="bankCode != null">
+        `bank_code`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="custId != null">
+        #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="subaccountType != null">
+        #{subaccountType,jdbcType=INTEGER},
+      </if>
+      <if test="custName != null">
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="rechargeType != null">
+        #{rechargeType,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeAmount != null">
+        #{rechargeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="custBy != null">
+        #{custBy,jdbcType=VARCHAR},
+      </if>
+      <if test="bankType != null">
+        #{bankType,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        #{bankCode,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bichuang.accountcenter.repository.model.BalanceRechargeBillC">
+    update `t_bc_c_recharge_bill_seq`
+    <set>
+      <if test="custId != null">
+        `cust_id` = #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="subaccountType != null">
+        `subAccount_type` = #{subaccountType,jdbcType=INTEGER},
+      </if>
+      <if test="custName != null">
+        `cust_name` = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="rechargeType != null">
+        `recharge_type` = #{rechargeType,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeAmount != null">
+        `recharge_amount` = #{rechargeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        `create_time` = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="custBy != null">
+        `cust_by` = #{custBy,jdbcType=VARCHAR},
+      </if>
+      <if test="bankType != null">
+        `bank_type` = #{bankType,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        `bank_code` = #{bankCode,jdbcType=BIT},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bichuang.accountcenter.repository.model.BalanceRechargeBillC">
+    update `t_bc_c_recharge_bill_seq`
+    set `cust_id` = #{custId,jdbcType=VARCHAR},
+      `subAccount_type` = #{subaccountType,jdbcType=INTEGER},
+      `cust_name` = #{custName,jdbcType=VARCHAR},
+      `recharge_type` = #{rechargeType,jdbcType=INTEGER},
+      `recharge_amount` = #{rechargeAmount,jdbcType=DECIMAL},
+      `create_time` = #{createTime,jdbcType=TIMESTAMP},
+      `cust_by` = #{custBy,jdbcType=VARCHAR},
+      `bank_type` = #{bankType,jdbcType=VARCHAR},
+      `bank_code` = #{bankCode,jdbcType=BIT}
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bichuang.accountcenter.repository.mapper.BalanceAccountOptLogMapper">
+  <resultMap id="BaseResultMap" type="com.bichuang.accountcenter.repository.model.BalanceAccountOptLog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="Cust_Name" jdbcType="VARCHAR" property="custName" />
+    <result column="AccountType" jdbcType="VARCHAR" property="accounttype" />
+    <result column="Cust_Id" jdbcType="VARCHAR" property="custId" />
+    <result column="OperType" jdbcType="CHAR" property="opertype" />
+    <result column="Create_Time" jdbcType="DATE" property="createTime" />
+    <result column="Operator" jdbcType="VARCHAR" property="operator" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `Cust_Name`, `AccountType`, `Cust_Id`, `OperType`, `Create_Time`, `Operator`, 
+    `REMARK`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `t_bc_c_opt_log`
+    where `id` = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from `t_bc_c_opt_log`
+    where `id` = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountOptLog">
+    insert into `t_bc_c_opt_log` (`id`, `Cust_Name`, `AccountType`, 
+      `Cust_Id`, `OperType`, `Create_Time`, 
+      `Operator`, `REMARK`)
+    values (#{id,jdbcType=INTEGER}, #{custName,jdbcType=VARCHAR}, #{accounttype,jdbcType=VARCHAR}, 
+      #{custId,jdbcType=VARCHAR}, #{opertype,jdbcType=CHAR}, #{createTime,jdbcType=DATE}, 
+      #{operator,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountOptLog">
+    insert into `t_bc_c_opt_log`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="custName != null">
+        `Cust_Name`,
+      </if>
+      <if test="accounttype != null">
+        `AccountType`,
+      </if>
+      <if test="custId != null">
+        `Cust_Id`,
+      </if>
+      <if test="opertype != null">
+        `OperType`,
+      </if>
+      <if test="createTime != null">
+        `Create_Time`,
+      </if>
+      <if test="operator != null">
+        `Operator`,
+      </if>
+      <if test="remark != null">
+        `REMARK`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="custName != null">
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="accounttype != null">
+        #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null">
+        #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="opertype != null">
+        #{opertype,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountOptLog">
+    update `t_bc_c_opt_log`
+    <set>
+      <if test="custName != null">
+        `Cust_Name` = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="accounttype != null">
+        `AccountType` = #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null">
+        `Cust_Id` = #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="opertype != null">
+        `OperType` = #{opertype,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        `Create_Time` = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="operator != null">
+        `Operator` = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        `REMARK` = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountOptLog">
+    update `t_bc_c_opt_log`
+    set `Cust_Name` = #{custName,jdbcType=VARCHAR},
+      `AccountType` = #{accounttype,jdbcType=VARCHAR},
+      `Cust_Id` = #{custId,jdbcType=VARCHAR},
+      `OperType` = #{opertype,jdbcType=CHAR},
+      `Create_Time` = #{createTime,jdbcType=DATE},
+      `Operator` = #{operator,jdbcType=VARCHAR},
+      `REMARK` = #{remark,jdbcType=VARCHAR}
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

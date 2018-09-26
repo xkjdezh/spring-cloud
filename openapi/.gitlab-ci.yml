@@ -1,0 +1,18 @@
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script: echo hii@@@@@@@@@@@
+  artifacts:
+    paths:
+      - target/demo-0.0.1-SNAPSHOT.jar
+
+production:
+  stage: deploy
+  script:
+  - echo hii@@@@@@@@@@@
+  only:
+  - master

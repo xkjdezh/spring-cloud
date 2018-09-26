@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.bichuang.accountcenter.repository.mapper.BalanceAccountCChangeSeqMapper">
+	<resultMap id="BaseResultMap"
+		type="com.bichuang.accountcenter.repository.model.BalanceAccountCChangeSeq">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="sn" jdbcType="VARCHAR" property="sn" />
+		<result column="account_id" jdbcType="INTEGER" property="accountId" />
+		<result column="cust_Id" jdbcType="VARCHAR" property="custId" />
+		<result column="account_type" jdbcType="VARCHAR" property="accountType" />
+		<result column="cust_name" jdbcType="VARCHAR" property="custName" />
+		<result column="seq_flag" jdbcType="VARCHAR" property="seqFlag" />
+		<result column="change_type" jdbcType="VARCHAR" property="changeType" />
+		<result column="preAmount" jdbcType="DECIMAL" property="preamount" />
+		<result column="amount" jdbcType="DECIMAL" property="amount" />
+		<result column="cash_amount" jdbcType="DECIMAL" property="cashAmount" />
+		<result column="uncash_amount" jdbcType="DECIMAL" property="uncashAmount" />
+		<result column="freeze_cash_amout" jdbcType="DECIMAL" property="freezeCashAmout" />
+		<result column="freeze_unCash_amount" jdbcType="DECIMAL"
+			property="freezeUncashAmount" />
+		<result column="ref_sn" jdbcType="VARCHAR" property="refSn" />
+		<result column="ref_batch_id" jdbcType="VARCHAR" property="refBatchId" />
+		<result column="order_id" jdbcType="VARCHAR" property="orderId" />
+		<result column="order_status" jdbcType="INTEGER" property="orderStatus" />
+		<result column="back_time" jdbcType="TIMESTAMP" property="backTime" />
+		<result column="create_time" jdbcType="DATE" property="createTime" />
+		<result column="note" jdbcType="VARCHAR" property="note" />
+		<result column="work_date" jdbcType="VARCHAR" property="workDate" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		`id`, `sn`, `account_id`, `cust_Id`, `account_type`,
+		`cust_name`,
+		`seq_flag`, `change_type`,
+		`preAmount`, `amount`,
+		`cash_amount`, `uncash_amount`, `freeze_cash_amout`,
+		`freeze_unCash_amount`,
+		`ref_sn`, `ref_batch_id`, `order_id`, `order_status`,
+		`back_time`,
+		`create_time`,
+		`note`, `work_date`
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from `t_bc_c_change_seq`
+		where `id` = #{id,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectBalanceSeq"
+		parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountCChangeSeq"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from `t_bc_c_change_seq`
+		where 1=1
+		<if test="custId != null">
+			AND `cust_id` = #{custId,jdbcType=VARCHAR}
+		</if>
+		<if test="startTimeStr != null and  startTimeStr != ''">
+			AND DATE_FORMAT(create_time,'%Y-%m-%d') &gt;=
+			#{startTimeStr}
+		</if>
+		<if test="endTimeStr != null and  endTimeStr != ''">
+			AND DATE_FORMAT(create_time,'%Y-%m-%d') &lt;=
+			#{endTimeStr}
+		</if>
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		`t_bc_c_change_seq`
+		where `id` = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountCChangeSeq">
+		insert into `t_bc_c_change_seq` (`id`, `sn`,
+		`account_id`,
+		`cust_Id`, `account_type`, `cust_name`,
+		`seq_flag`,
+		`change_type`, `preAmount`,
+		`amount`, `cash_amount`, `uncash_amount`,
+		`freeze_cash_amout`, `freeze_unCash_amount`, `ref_sn`,
+		`ref_batch_id`, `order_id`, `order_status`,
+		`back_time`, `create_time`,
+		`note`,
+		`work_date`)
+		values (#{id,jdbcType=INTEGER},
+		#{sn,jdbcType=VARCHAR},
+		#{accountId,jdbcType=INTEGER},
+		#{custId,jdbcType=VARCHAR}, #{accountType,jdbcType=VARCHAR},
+		#{custName,jdbcType=VARCHAR},
+		#{seqFlag,jdbcType=VARCHAR},
+		#{changeType,jdbcType=VARCHAR},
+		#{preamount,jdbcType=DECIMAL},
+		#{amount,jdbcType=DECIMAL}, #{cashAmount,jdbcType=DECIMAL},
+		#{uncashAmount,jdbcType=DECIMAL},
+		#{freezeCashAmout,jdbcType=DECIMAL},
+		#{freezeUncashAmount,jdbcType=DECIMAL}, #{refSn,jdbcType=VARCHAR},
+		#{refBatchId,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR},
+		#{orderStatus,jdbcType=INTEGER},
+		#{backTime,jdbcType=TIMESTAMP},
+		#{createTime,jdbcType=DATE}, #{note,jdbcType=VARCHAR},
+		#{workDate,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountCChangeSeq">
+		insert into `t_bc_c_change_seq`
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				`id`,
+			</if>
+			<if test="sn != null">
+				`sn`,
+			</if>
+			<if test="accountId != null">
+				`account_id`,
+			</if>
+			<if test="custId != null">
+				`cust_Id`,
+			</if>
+			<if test="accountType != null">
+				`account_type`,
+			</if>
+			<if test="custName != null">
+				`cust_name`,
+			</if>
+			<if test="seqFlag != null">
+				`seq_flag`,
+			</if>
+			<if test="changeType != null">
+				`change_type`,
+			</if>
+			<if test="preamount != null">
+				`preAmount`,
+			</if>
+			<if test="amount != null">
+				`amount`,
+			</if>
+			<if test="cashAmount != null">
+				`cash_amount`,
+			</if>
+			<if test="uncashAmount != null">
+				`uncash_amount`,
+			</if>
+			<if test="freezeCashAmout != null">
+				`freeze_cash_amout`,
+			</if>
+			<if test="freezeUncashAmount != null">
+				`freeze_unCash_amount`,
+			</if>
+			<if test="refSn != null">
+				`ref_sn`,
+			</if>
+			<if test="refBatchId != null">
+				`ref_batch_id`,
+			</if>
+			<if test="orderId != null">
+				`order_id`,
+			</if>
+			<if test="orderStatus != null">
+				`order_status`,
+			</if>
+			<if test="backTime != null">
+				`back_time`,
+			</if>
+			<if test="createTime != null">
+				`create_time`,
+			</if>
+			<if test="note != null">
+				`note`,
+			</if>
+			<if test="workDate != null">
+				`work_date`,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="sn != null">
+				#{sn,jdbcType=VARCHAR},
+			</if>
+			<if test="accountId != null">
+				#{accountId,jdbcType=INTEGER},
+			</if>
+			<if test="custId != null">
+				#{custId,jdbcType=VARCHAR},
+			</if>
+			<if test="accountType != null">
+				#{accountType,jdbcType=VARCHAR},
+			</if>
+			<if test="custName != null">
+				#{custName,jdbcType=VARCHAR},
+			</if>
+			<if test="seqFlag != null">
+				#{seqFlag,jdbcType=VARCHAR},
+			</if>
+			<if test="changeType != null">
+				#{changeType,jdbcType=VARCHAR},
+			</if>
+			<if test="preamount != null">
+				#{preamount,jdbcType=DECIMAL},
+			</if>
+			<if test="amount != null">
+				#{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="cashAmount != null">
+				#{cashAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="uncashAmount != null">
+				#{uncashAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="freezeCashAmout != null">
+				#{freezeCashAmout,jdbcType=DECIMAL},
+			</if>
+			<if test="freezeUncashAmount != null">
+				#{freezeUncashAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="refSn != null">
+				#{refSn,jdbcType=VARCHAR},
+			</if>
+			<if test="refBatchId != null">
+				#{refBatchId,jdbcType=VARCHAR},
+			</if>
+			<if test="orderId != null">
+				#{orderId,jdbcType=VARCHAR},
+			</if>
+			<if test="orderStatus != null">
+				#{orderStatus,jdbcType=INTEGER},
+			</if>
+			<if test="backTime != null">
+				#{backTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=DATE},
+			</if>
+			<if test="note != null">
+				#{note,jdbcType=VARCHAR},
+			</if>
+			<if test="workDate != null">
+				#{workDate,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateOrderStatus"
+		parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountCChangeSeq">
+		update `t_bc_c_change_seq`
+		<set>
+			<if test="sn != null">
+				`sn` = #{sn,jdbcType=VARCHAR},
+			</if>
+			<if test="accountId != null">
+				`account_id` = #{accountId,jdbcType=INTEGER},
+			</if>
+			<if test="custId != null">
+				`cust_Id` = #{custId,jdbcType=VARCHAR},
+			</if>
+			<if test="accountType != null">
+				`account_type` = #{accountType,jdbcType=VARCHAR},
+			</if>
+			<if test="custName != null">
+				`cust_name` = #{custName,jdbcType=VARCHAR},
+			</if>
+			<if test="seqFlag != null">
+				`seq_flag` = #{seqFlag,jdbcType=VARCHAR},
+			</if>
+			<if test="changeType != null">
+				`change_type` = #{changeType,jdbcType=VARCHAR},
+			</if>
+			<if test="preamount != null">
+				`preAmount` = #{preamount,jdbcType=DECIMAL},
+			</if>
+			<if test="amount != null">
+				`amount` = #{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="cashAmount != null">
+				`cash_amount` = #{cashAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="uncashAmount != null">
+				`uncash_amount` = #{uncashAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="freezeCashAmout != null">
+				`freeze_cash_amout` =
+				#{freezeCashAmout,jdbcType=DECIMAL},
+			</if>
+			<if test="freezeUncashAmount != null">
+				`freeze_unCash_amount` =
+				#{freezeUncashAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="refSn != null">
+				`ref_sn` = #{refSn,jdbcType=VARCHAR},
+			</if>
+			<if test="refBatchId != null">
+				`ref_batch_id` = #{refBatchId,jdbcType=VARCHAR},
+			</if>
+			<if test="orderId != null">
+				`order_id` = #{orderId,jdbcType=VARCHAR},
+			</if>
+			<if test="orderStatus != null">
+				`order_status` = #{orderStatus,jdbcType=INTEGER},
+			</if>
+			<if test="backTime != null">
+				`back_time` = #{backTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createTime != null">
+				`create_time` = #{createTime,jdbcType=DATE},
+			</if>
+			<if test="note != null">
+				`note` = #{note,jdbcType=VARCHAR},
+			</if>
+			<if test="workDate != null">
+				`work_date` = #{workDate,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where `order_id` = #{orderId,jdbcType=VARCHAR}  
+	</update>
+	
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountCChangeSeq">
+		update `t_bc_c_change_seq`
+		<set>
+			<if test="sn != null">
+				`sn` = #{sn,jdbcType=VARCHAR},
+			</if>
+			<if test="accountId != null">
+				`account_id` = #{accountId,jdbcType=INTEGER},
+			</if>
+			<if test="custId != null">
+				`cust_Id` = #{custId,jdbcType=VARCHAR},
+			</if>
+			<if test="accountType != null">
+				`account_type` = #{accountType,jdbcType=VARCHAR},
+			</if>
+			<if test="custName != null">
+				`cust_name` = #{custName,jdbcType=VARCHAR},
+			</if>
+			<if test="seqFlag != null">
+				`seq_flag` = #{seqFlag,jdbcType=VARCHAR},
+			</if>
+			<if test="changeType != null">
+				`change_type` = #{changeType,jdbcType=VARCHAR},
+			</if>
+			<if test="preamount != null">
+				`preAmount` = #{preamount,jdbcType=DECIMAL},
+			</if>
+			<if test="amount != null">
+				`amount` = #{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="cashAmount != null">
+				`cash_amount` = #{cashAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="uncashAmount != null">
+				`uncash_amount` = #{uncashAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="freezeCashAmout != null">
+				`freeze_cash_amout` =
+				#{freezeCashAmout,jdbcType=DECIMAL},
+			</if>
+			<if test="freezeUncashAmount != null">
+				`freeze_unCash_amount` =
+				#{freezeUncashAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="refSn != null">
+				`ref_sn` = #{refSn,jdbcType=VARCHAR},
+			</if>
+			<if test="refBatchId != null">
+				`ref_batch_id` = #{refBatchId,jdbcType=VARCHAR},
+			</if>
+			<if test="orderId != null">
+				`order_id` = #{orderId,jdbcType=VARCHAR},
+			</if>
+			<if test="orderStatus != null">
+				`order_status` = #{orderStatus,jdbcType=INTEGER},
+			</if>
+			<if test="backTime != null">
+				`back_time` = #{backTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createTime != null">
+				`create_time` = #{createTime,jdbcType=DATE},
+			</if>
+			<if test="note != null">
+				`note` = #{note,jdbcType=VARCHAR},
+			</if>
+			<if test="workDate != null">
+				`work_date` = #{workDate,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where `id` = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountCChangeSeq">
+		update `t_bc_c_change_seq`
+		set `sn` =
+		#{sn,jdbcType=VARCHAR},
+		`account_id` = #{accountId,jdbcType=INTEGER},
+		`cust_Id` = #{custId,jdbcType=VARCHAR},
+		`account_type` =
+		#{accountType,jdbcType=VARCHAR},
+		`cust_name` =
+		#{custName,jdbcType=VARCHAR},
+		`seq_flag` = #{seqFlag,jdbcType=VARCHAR},
+		`change_type` = #{changeType,jdbcType=VARCHAR},
+		`preAmount` =
+		#{preamount,jdbcType=DECIMAL},
+		`amount` = #{amount,jdbcType=DECIMAL},
+		`cash_amount` = #{cashAmount,jdbcType=DECIMAL},
+		`uncash_amount` =
+		#{uncashAmount,jdbcType=DECIMAL},
+		`freeze_cash_amout` =
+		#{freezeCashAmout,jdbcType=DECIMAL},
+		`freeze_unCash_amount` =
+		#{freezeUncashAmount,jdbcType=DECIMAL},
+		`ref_sn` =
+		#{refSn,jdbcType=VARCHAR},
+		`ref_batch_id` =
+		#{refBatchId,jdbcType=VARCHAR},
+		`order_id` =
+		#{orderId,jdbcType=VARCHAR},
+		`order_status` =
+		#{orderStatus,jdbcType=INTEGER},
+		`back_time` =
+		#{backTime,jdbcType=TIMESTAMP},
+		`create_time` =
+		#{createTime,jdbcType=DATE},
+		`note` = #{note,jdbcType=VARCHAR},
+		`work_date` = #{workDate,jdbcType=VARCHAR}
+		where `id` =
+		#{id,jdbcType=INTEGER}
+	</update>
+</mapper>

@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.bichuang.accountcenter.repository.mapper.BalanceAccountCMapper">
+	<resultMap id="BaseResultMap"
+		type="com.bichuang.accountcenter.repository.model.BalanceAccountC">
+		<id column="ID" jdbcType="INTEGER" property="id" />
+		<result column="cust_id" jdbcType="VARCHAR" property="custId" />
+		<result column="cust_name" jdbcType="VARCHAR" property="custName" />
+		<result column="phone" jdbcType="VARCHAR" property="phone" />
+		<result column="login_pwd" jdbcType="VARCHAR" property="loginPwd" />
+		<result column="pay_pwd" jdbcType="VARCHAR" property="payPwd" />
+		<result column="biz_user_id" jdbcType="VARCHAR" property="bizUserId" />
+		<result column="identity_type" jdbcType="INTEGER" property="identityType" />
+		<result column="identity_no" jdbcType="VARCHAR" property="identityNo" />
+		<result column="amount" jdbcType="DECIMAL" property="amount" />
+		<result column="cash_amount" jdbcType="DECIMAL" property="cashAmount" />
+		<result column="uncash_amount" jdbcType="DECIMAL" property="uncashAmount" />
+		<result column="freeze_cash_amount" jdbcType="DECIMAL"
+			property="freezeCashAmount" />
+		<result column="freeze_unCash_amount" jdbcType="DECIMAL"
+			property="freezeUncashAmount" />
+		<result column="property" jdbcType="CHAR" property="property" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="create_Time" jdbcType="DATE" property="createTime" />
+		<result column="interest_base" jdbcType="DECIMAL" property="interestBase" />
+		<result column="lastTerm_interest_dat" jdbcType="DATE"
+			property="lasttermInterestDat" />
+		<result column="lastUpdate_time" jdbcType="DATE" property="lastupdateTime" />
+		<result column="lastTerm_amount" jdbcType="DECIMAL" property="lasttermAmount" />
+		<result column="check_value" jdbcType="VARCHAR" property="checkValue" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		`ID`, `cust_id`, `cust_name`,'phone', `login_pwd`, `pay_pwd`,`biz_user_id`,
+		`identity_type`,
+		`identity_no`,
+		`amount`, `cash_amount`,
+		`uncash_amount`, `freeze_cash_amount`,
+		`freeze_unCash_amount`,
+		`property`, `status`, `create_Time`, `interest_base`,
+		`lastTerm_interest_dat`,
+		`lastUpdate_time`,
+		`lastTerm_amount`,
+		`check_value`
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from `t_bc_c_account`
+		where `ID` = #{id,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectAll"
+		parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountC"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from `t_bc_c_account`
+		where 1=1
+		<if test="custId != null">
+			and `cust_id` = #{custId,jdbcType=VARCHAR}
+		</if>
+		<if test="bizUserId != null">
+			and `biz_user_id` = #{bizUserId,jdbcType=VARCHAR}
+		</if>
+		<if test="custName != null">
+			and `cust_name` = #{custName,jdbcType=VARCHAR}
+		</if>
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		`t_bc_c_account`
+		where `ID` = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountC">
+		insert into `t_bc_c_account` (`ID`, `cust_id`,
+		`cust_name`,
+		`login_pwd`, `pay_pwd`, `identity_type`,
+		`identity_no`,
+		`amount`, `cash_amount`,
+		`uncash_amount`, `freeze_cash_amount`,
+		`freeze_unCash_amount`,
+		`property`, `status`, `create_Time`,
+		`interest_base`, `lastTerm_interest_dat`, `lastUpdate_time`,
+		`lastTerm_amount`, `check_value`)
+		values (#{id,jdbcType=INTEGER},
+		#{custId,jdbcType=VARCHAR},
+		#{custName,jdbcType=VARCHAR},
+		#{loginPwd,jdbcType=VARCHAR}, #{payPwd,jdbcType=VARCHAR},
+		#{identityType,jdbcType=INTEGER},
+		#{identityNo,jdbcType=VARCHAR},
+		#{amount,jdbcType=DECIMAL},
+		#{cashAmount,jdbcType=DECIMAL},
+		#{uncashAmount,jdbcType=DECIMAL},
+		#{freezeCashAmount,jdbcType=DECIMAL},
+		#{freezeUncashAmount,jdbcType=DECIMAL},
+		#{property,jdbcType=CHAR},
+		#{status,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE},
+		#{interestBase,jdbcType=DECIMAL},
+		#{lasttermInterestDat,jdbcType=DATE}, #{lastupdateTime,jdbcType=DATE},
+		#{lasttermAmount,jdbcType=DECIMAL}, #{checkValue,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountC">
+		insert into `t_bc_c_account`
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				`ID`,
+			</if>
+			<if test="custId != null">
+				`cust_id`,
+			</if>
+			<if test="custName != null">
+				`cust_name`,
+			</if>
+			<if test="loginPwd != null">
+				`login_pwd`,
+			</if>
+			<if test="payPwd != null">
+				`pay_pwd`,
+			</if>
+			<if test="bizUserId != null">
+				`biz_user_id`,
+			</if>
+			<if test="identityType != null">
+				`identity_type`,
+			</if>
+			<if test="identityNo != null">
+				`identity_no`,
+			</if>
+			<if test="amount != null">
+				`amount`,
+			</if>
+			<if test="cashAmount != null">
+				`cash_amount`,
+			</if>
+			<if test="uncashAmount != null">
+				`uncash_amount`,
+			</if>
+			<if test="freezeCashAmount != null">
+				`freeze_cash_amount`,
+			</if>
+			<if test="freezeUncashAmount != null">
+				`freeze_unCash_amount`,
+			</if>
+			<if test="property != null">
+				`property`,
+			</if>
+			<if test="status != null">
+				`status`,
+			</if>
+			<if test="createTime != null">
+				`create_Time`,
+			</if>
+			<if test="interestBase != null">
+				`interest_base`,
+			</if>
+			<if test="lasttermInterestDat != null">
+				`lastTerm_interest_dat`,
+			</if>
+			<if test="lastupdateTime != null">
+				`lastUpdate_time`,
+			</if>
+			<if test="lasttermAmount != null">
+				`lastTerm_amount`,
+			</if>
+			<if test="checkValue != null">
+				`check_value`,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="custId != null">
+				#{custId,jdbcType=VARCHAR},
+			</if>
+			<if test="custName != null">
+				#{custName,jdbcType=VARCHAR},
+			</if>
+			<if test="loginPwd != null">
+				#{loginPwd,jdbcType=VARCHAR},
+			</if>
+			<if test="payPwd != null">
+				#{payPwd,jdbcType=VARCHAR},
+			</if>
+			<if test="bizUserId != null">
+				#{bizUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="identityType != null">
+				#{identityType,jdbcType=INTEGER},
+			</if>
+			<if test="identityNo != null">
+				#{identityNo,jdbcType=VARCHAR},
+			</if>
+			<if test="amount != null">
+				#{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="cashAmount != null">
+				#{cashAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="uncashAmount != null">
+				#{uncashAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="freezeCashAmount != null">
+				#{freezeCashAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="freezeUncashAmount != null">
+				#{freezeUncashAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="property != null">
+				#{property,jdbcType=CHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=DATE},
+			</if>
+			<if test="interestBase != null">
+				#{interestBase,jdbcType=DECIMAL},
+			</if>
+			<if test="lasttermInterestDat != null">
+				#{lasttermInterestDat,jdbcType=DATE},
+			</if>
+			<if test="lastupdateTime != null">
+				#{lastupdateTime,jdbcType=DATE},
+			</if>
+			<if test="lasttermAmount != null">
+				#{lasttermAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="checkValue != null">
+				#{checkValue,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountC">
+		update `t_bc_c_account`
+		<set>
+			<if test="custId != null">
+				`cust_id` = #{custId,jdbcType=VARCHAR},
+			</if>
+			<if test="custName != null">
+				`cust_name` = #{custName,jdbcType=VARCHAR},
+			</if>
+			<if test="loginPwd != null">
+				`login_pwd` = #{loginPwd,jdbcType=VARCHAR},
+			</if>
+			<if test="payPwd != null">
+				`pay_pwd` = #{payPwd,jdbcType=VARCHAR},
+			</if>
+			<if test="identityType != null">
+				`identity_type` = #{identityType,jdbcType=INTEGER},
+			</if>
+			<if test="identityNo != null">
+				`identity_no` = #{identityNo,jdbcType=VARCHAR},
+			</if>
+			<if test="amount != null">
+				`amount` = #{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="cashAmount != null">
+				`cash_amount` = #{cashAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="uncashAmount != null">
+				`uncash_amount` = #{uncashAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="freezeCashAmount != null">
+				`freeze_cash_amount` =
+				#{freezeCashAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="freezeUncashAmount != null">
+				`freeze_unCash_amount` =
+				#{freezeUncashAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="property != null">
+				`property` = #{property,jdbcType=CHAR},
+			</if>
+			<if test="status != null">
+				`status` = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				`create_Time` = #{createTime,jdbcType=DATE},
+			</if>
+			<if test="interestBase != null">
+				`interest_base` = #{interestBase,jdbcType=DECIMAL},
+			</if>
+			<if test="lasttermInterestDat != null">
+				`lastTerm_interest_dat` =
+				#{lasttermInterestDat,jdbcType=DATE},
+			</if>
+			<if test="lastupdateTime != null">
+				`lastUpdate_time` = #{lastupdateTime,jdbcType=DATE},
+			</if>
+			<if test="lasttermAmount != null">
+				`lastTerm_amount` = #{lasttermAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="checkValue != null">
+				`check_value` = #{checkValue,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where `ID` = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByCusId"
+		parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountC">
+		update `t_bc_c_account`
+		<set>
+			<if test="custId != null">
+				`cust_id` = #{custId,jdbcType=VARCHAR},
+			</if>
+			<if test="custName != null">
+				`cust_name` = #{custName,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				`phone` = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="loginPwd != null">
+				`login_pwd` = #{loginPwd,jdbcType=VARCHAR},
+			</if>
+			<if test="payPwd != null">
+				`pay_pwd` = #{payPwd,jdbcType=VARCHAR},
+			</if>
+			<if test="identityType != null">
+				`identity_type` = #{identityType,jdbcType=INTEGER},
+			</if>
+			<if test="identityNo != null">
+				`identity_no` = #{identityNo,jdbcType=VARCHAR},
+			</if>
+			<if test="amount != null">
+				`amount` = #{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="cashAmount != null">
+				`cash_amount` = #{cashAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="uncashAmount != null">
+				`uncash_amount` = #{uncashAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="freezeCashAmount != null">
+				`freeze_cash_amount` =
+				#{freezeCashAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="freezeUncashAmount != null">
+				`freeze_unCash_amount` =
+				#{freezeUncashAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="property != null">
+				`property` = #{property,jdbcType=CHAR},
+			</if>
+			<if test="status != null">
+				`status` = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				`create_Time` = #{createTime,jdbcType=DATE},
+			</if>
+			<if test="interestBase != null">
+				`interest_base` = #{interestBase,jdbcType=DECIMAL},
+			</if>
+			<if test="lasttermInterestDat != null">
+				`lastTerm_interest_dat` =
+				#{lasttermInterestDat,jdbcType=DATE},
+			</if>
+			<if test="lastupdateTime != null">
+				`lastUpdate_time` = #{lastupdateTime,jdbcType=DATE},
+			</if>
+			<if test="lasttermAmount != null">
+				`lastTerm_amount` = #{lasttermAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="checkValue != null">
+				`check_value` = #{checkValue,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where `cust_id` = #{custId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountC">
+		update `t_bc_c_account`
+		set `cust_id` =
+		#{custId,jdbcType=VARCHAR},
+		`cust_name` = #{custName,jdbcType=VARCHAR},
+		`login_pwd` = #{loginPwd,jdbcType=VARCHAR},
+		`pay_pwd` =
+		#{payPwd,jdbcType=VARCHAR},
+		`identity_type` =
+		#{identityType,jdbcType=INTEGER},
+		`identity_no` =
+		#{identityNo,jdbcType=VARCHAR},
+		`amount` = #{amount,jdbcType=DECIMAL},
+		`cash_amount` = #{cashAmount,jdbcType=DECIMAL},
+		`uncash_amount` =
+		#{uncashAmount,jdbcType=DECIMAL},
+		`freeze_cash_amount` =
+		#{freezeCashAmount,jdbcType=DECIMAL},
+		`freeze_unCash_amount` =
+		#{freezeUncashAmount,jdbcType=DECIMAL},
+		`property` =
+		#{property,jdbcType=CHAR},
+		`status` = #{status,jdbcType=VARCHAR},
+		`create_Time` = #{createTime,jdbcType=DATE},
+		`interest_base` =
+		#{interestBase,jdbcType=DECIMAL},
+		`lastTerm_interest_dat` =
+		#{lasttermInterestDat,jdbcType=DATE},
+		`lastUpdate_time` =
+		#{lastupdateTime,jdbcType=DATE},
+		`lastTerm_amount` =
+		#{lasttermAmount,jdbcType=DECIMAL},
+		`check_value` =
+		#{checkValue,jdbcType=VARCHAR}
+		where `ID` = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

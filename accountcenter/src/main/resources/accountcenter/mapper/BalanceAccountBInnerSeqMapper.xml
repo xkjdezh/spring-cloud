@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bichuang.accountcenter.repository.mapper.BalanceAccountBInnerSeqMapper">
+  <resultMap id="BaseResultMap" type="com.bichuang.accountcenter.repository.model.BalanceAccountBInnerSeq">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="account_id_b" jdbcType="INTEGER" property="accountIdB" />
+    <result column="PreAmount" jdbcType="BIGINT" property="preamount" />
+    <result column="Amount" jdbcType="BIGINT" property="amount" />
+    <result column="OrderID" jdbcType="VARCHAR" property="orderid" />
+    <result column="CREATE_TIME" jdbcType="DATE" property="createTime" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="WORKDATE" jdbcType="VARCHAR" property="workdate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `account_id_b`, `PreAmount`, `Amount`, `OrderID`, `CREATE_TIME`, `NOTE`, `WORKDATE`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `t_bc_b_inner_settle_seq`
+    where `id` = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from `t_bc_b_inner_settle_seq`
+    where `id` = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountBInnerSeq">
+    insert into `t_bc_b_inner_settle_seq` (`id`, `account_id_b`, `PreAmount`, 
+      `Amount`, `OrderID`, `CREATE_TIME`, 
+      `NOTE`, `WORKDATE`)
+    values (#{id,jdbcType=INTEGER}, #{accountIdB,jdbcType=INTEGER}, #{preamount,jdbcType=BIGINT}, 
+      #{amount,jdbcType=BIGINT}, #{orderid,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, 
+      #{note,jdbcType=VARCHAR}, #{workdate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountBInnerSeq">
+    insert into `t_bc_b_inner_settle_seq`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="accountIdB != null">
+        `account_id_b`,
+      </if>
+      <if test="preamount != null">
+        `PreAmount`,
+      </if>
+      <if test="amount != null">
+        `Amount`,
+      </if>
+      <if test="orderid != null">
+        `OrderID`,
+      </if>
+      <if test="createTime != null">
+        `CREATE_TIME`,
+      </if>
+      <if test="note != null">
+        `NOTE`,
+      </if>
+      <if test="workdate != null">
+        `WORKDATE`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="accountIdB != null">
+        #{accountIdB,jdbcType=INTEGER},
+      </if>
+      <if test="preamount != null">
+        #{preamount,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="workdate != null">
+        #{workdate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountBInnerSeq">
+    update `t_bc_b_inner_settle_seq`
+    <set>
+      <if test="accountIdB != null">
+        `account_id_b` = #{accountIdB,jdbcType=INTEGER},
+      </if>
+      <if test="preamount != null">
+        `PreAmount` = #{preamount,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null">
+        `Amount` = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="orderid != null">
+        `OrderID` = #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        `CREATE_TIME` = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="note != null">
+        `NOTE` = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="workdate != null">
+        `WORKDATE` = #{workdate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bichuang.accountcenter.repository.model.BalanceAccountBInnerSeq">
+    update `t_bc_b_inner_settle_seq`
+    set `account_id_b` = #{accountIdB,jdbcType=INTEGER},
+      `PreAmount` = #{preamount,jdbcType=BIGINT},
+      `Amount` = #{amount,jdbcType=BIGINT},
+      `OrderID` = #{orderid,jdbcType=VARCHAR},
+      `CREATE_TIME` = #{createTime,jdbcType=DATE},
+      `NOTE` = #{note,jdbcType=VARCHAR},
+      `WORKDATE` = #{workdate,jdbcType=VARCHAR}
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

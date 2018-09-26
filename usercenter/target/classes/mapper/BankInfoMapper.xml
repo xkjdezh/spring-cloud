@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.bichuang.usercenter.repository.mapper.BankInfoMapper">
+	<resultMap id="BaseResultMap"
+		type="com.bichuang.usercenter.repository.model.BankInfo">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="bank_name" jdbcType="VARCHAR"
+			property="bankName" />
+		<result column="logo_url" jdbcType="VARCHAR" property="logoUrl" />
+		<result column="create_time" jdbcType="TIMESTAMP"
+			property="createTime" />
+		<result column="create_by" jdbcType="VARCHAR"
+			property="createBy" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		`id`, `bank_name`, `logo_url`, `create_time`, `create_by`
+	</sql>
+	<select id="selectByPrimaryKey"
+		parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from `t_bank_info`
+		where `id` = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from `t_bank_info`
+		where `id` = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="com.bichuang.usercenter.repository.model.BankInfo">
+		insert into `t_bank_info` (`id`, `bank_name`, `logo_url`,
+		`create_time`, `create_by`)
+		values (#{id,jdbcType=INTEGER}, #{bankName,jdbcType=VARCHAR},
+		#{logoUrl,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.bichuang.usercenter.repository.model.BankInfo">
+		insert into `t_bank_info`
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				`id`,
+			</if>
+			<if test="bankName != null">
+				`bank_name`,
+			</if>
+			<if test="logoUrl != null">
+				`logo_url`,
+			</if>
+			<if test="createTime != null">
+				`create_time`,
+			</if>
+			<if test="createBy != null">
+				`create_by`,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="bankName != null">
+				#{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="logoUrl != null">
+				#{logoUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				#{createBy,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.bichuang.usercenter.repository.model.BankInfo">
+		update `t_bank_info`
+		<set>
+			<if test="bankName != null">
+				`bank_name` = #{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="logoUrl != null">
+				`logo_url` = #{logoUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				`create_time` = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				`create_by` = #{createBy,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where `id` = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.bichuang.usercenter.repository.model.BankInfo">
+		update `t_bank_info`
+		set `bank_name` = #{bankName,jdbcType=VARCHAR},
+		`logo_url` = #{logoUrl,jdbcType=VARCHAR},
+		`create_time` = #{createTime,jdbcType=TIMESTAMP},
+		`create_by` = #{createBy,jdbcType=VARCHAR}
+		where `id` = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

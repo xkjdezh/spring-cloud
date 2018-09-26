@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.bichuang.usercenter.repository.mapper.ext.BizTypeExtMapper">
+	<resultMap id="BaseResultMap"
+		type="com.bichuang.usercenter.repository.model.BizType">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="biz_type_code" jdbcType="VARCHAR"
+			property="bizTypeCode" />
+		<result column="biz_type_name" jdbcType="VARCHAR"
+			property="bizTypeName" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		`id`, `biz_type_code`, `biz_type_name`
+	</sql>
+	<select id="getBizTypeAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from `t_biz_type`
+	</select>
+
+</mapper>

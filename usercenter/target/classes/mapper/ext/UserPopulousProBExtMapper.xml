@@ -1,0 +1,911 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.bichuang.usercenter.repository.mapper.ext.UserPopulousProBExtMapper">
+	<resultMap id="BaseResultMap"
+		type="com.bichuang.usercenter.repository.model.UserPopulousProB">
+		<id column="user_id" jdbcType="INTEGER" property="userId" />
+		<result column="address" jdbcType="VARCHAR" property="address" />
+		<result column="brand" jdbcType="VARCHAR" property="brand" />
+		<result column="company_name" jdbcType="VARCHAR"
+			property="companyName" />
+		<result column="biz_type_id" jdbcType="INTEGER"
+			property="bizTypeId" />
+		<result column="b_extend_id" jdbcType="INTEGER"
+			property="bExtendId" />
+		<result column="real_name" jdbcType="VARCHAR"
+			property="realName" />
+		<result column="sexy" jdbcType="BIT" property="sexy" />
+		<result column="create_by" jdbcType="INTEGER"
+			property="createBy" />
+		<result column="create_time" jdbcType="TIMESTAMP"
+			property="createTime" />
+		<result column="update_by" jdbcType="INTEGER"
+			property="updateBy" />
+		<result column="update_time" jdbcType="TIMESTAMP"
+			property="updateTime" />
+		<result column="data_status" jdbcType="INTEGER"
+			property="dataStatus" />
+		<result column="area" jdbcType="VARCHAR" property="area" />
+		<result column="detail_address" jdbcType="VARCHAR"
+			property="detailAddress" />
+		<result column="last_login_time" jdbcType="TIMESTAMP"
+			property="lastLoginTime" />
+		<result column="idcard" jdbcType="VARCHAR" property="idcard" />
+		<result column="idcard_front_photo_url" jdbcType="VARCHAR"
+			property="idcardFrontPhotoUrl" />
+		<result column="idcard_reverse_photo_url" jdbcType="VARCHAR"
+			property="idcardReversePhotoUrl" />
+		<result column="bank_car_info" jdbcType="VARCHAR"
+			property="bankCarInfo" />
+		<result column="bank_info_id" jdbcType="INTEGER"
+			property="bankInfoId" />
+		<result column="bank_car_number" jdbcType="VARCHAR"
+			property="bankCarNumber" />
+		<result column="mailbox" jdbcType="VARCHAR" property="mailbox" />
+		<result column="qualifications_type" jdbcType="INTEGER"
+			property="qualificationsType" />
+		<result column="credit_advise" jdbcType="INTEGER"
+			property="creditAdvise" />
+		<result column="credit_code" jdbcType="VARCHAR"
+			property="creditCode" />
+		<result column="credit_query_results_url" jdbcType="VARCHAR"
+			property="creditQueryResultsUrl" />
+		<result column="license_id_photo_url" jdbcType="VARCHAR"
+			property="licenseIdPhotoUrl" />
+		<result column="license_code" jdbcType="VARCHAR"
+			property="licenseCode" />
+		<result column="license_register" jdbcType="VARCHAR"
+			property="licenseRegister" />
+		<result column="credit_query_results_file_name"
+			jdbcType="VARCHAR" property="creditQueryResultsFileName" />
+		<result column="license_id_photo_file_name" jdbcType="VARCHAR"
+			property="licenseIdPhotoFileName" />
+		<result column="audit_status" jdbcType="INTEGER"
+			property="auditStatus" />
+		<result column="audit_by" jdbcType="INTEGER" property="auditBy" />
+		<result column="audit_by_name" jdbcType="VARCHAR"
+			property="auditByName" />
+		<result column="audit_time" jdbcType="TIMESTAMP"
+			property="auditTime" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		`user_id`, `address`, `brand`, `company_name`, `biz_type_id`, `b_extend_id`,
+		`real_name`,
+		`sexy`, `create_by`, `create_time`, `update_by`, `update_time`,
+		`data_status`, `area`,
+		`detail_address`, `last_login_time`, `idcard`, `idcard_front_photo_url`,
+		`idcard_reverse_photo_url`,
+		`bank_car_info`, `bank_info_id`, `bank_car_number`, `mailbox`, `qualifications_type`,
+		`credit_advise`, `credit_code`, `credit_query_results_url`,
+		`license_id_photo_url`,
+		`license_code`, `license_register`, `credit_query_results_file_name`,
+		`license_id_photo_file_name`,
+		`audit_status`, `audit_by`, `audit_by_name`, `audit_time`, `remark`
+	</sql>
+
+	<select id="getAgents" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from `t_user_populouspro_b`
+		where biz_type_id=3;
+	</select>
+
+	<insert id="saveBaseUserVo" useGeneratedKeys="true"
+		parameterType="com.bichuang.platform.common.vo.UserVoB"
+		keyProperty="id">
+		<![CDATA[
+			INSERT INTO `t_sys_user_identity` (
+			  `password` ,
+			  `login_name` ,
+			  `mobile` ,
+			  `registe_time` ,
+			  `frist_registe_system_id` ,
+			  `type`
+			)
+			VALUES
+				(
+					#{password},
+					#{loginName},
+					#{mobile},
+					now(),
+					#{systemInletId},
+					#{type}
+				)
+			]]>
+	</insert>
+
+	<update id="updateBaseUserVo"
+		parameterType="com.bichuang.platform.common.vo.UserVoB">
+		update t_sys_user_identity
+		<set>
+			<if test="password != null and password != ''">
+				password = #{password},
+			</if>
+			<if test="loginName != null and loginName != ''">
+				login_name = #{loginName},
+			</if>
+			<if test="mobile != null and mobile != ''">
+				mobile = #{mobile}
+			</if>
+		</set>
+		<where>
+			id = ${id}
+		</where>
+	</update>
+
+	<insert id="saveUserVoB" useGeneratedKeys="true"
+		keyProperty="id">
+		<![CDATA[
+			INSERT INTO `t_user_populouspro_b` (
+			  `address` ,
+			  `brand` ,
+			  `company_name` ,
+			  `biz_type_id` ,
+			  `real_name`,
+			  `sexy`,
+			  `create_by`,
+			  `create_time`,
+			  `data_status`,
+			  `area`,
+			  `detail_address`,
+			  `last_login_time`,
+			  `idcard`,
+			  `idcard_front_photo_url`,
+			  `idcard_reverse_photo_url`,
+			  `bank_car_info`,
+			  `bank_car_number`,
+			  `mailbox`,
+			  `qualifications_type`,
+			  `credit_advise`,
+			  `credit_code`,
+			  `credit_query_results_url`,
+			  `license_id_photo_url`,
+			  `license_code`,
+			  `license_register`,
+			  `credit_query_results_file_name`,
+			  `license_id_photo_file_name`,
+			  `remark`
+			)
+			VALUES
+				(
+					#{address},
+					#{brand},
+					#{companyName},
+					#{bizType},
+					#{realName},
+					#{sex},
+					#{createBy},
+					now(),
+					#{dataStatus},
+					#{area},
+					#{detailAddress},
+					now(),
+					#{idcard},
+					#{idcardFrontPhotoUrl},
+					#{idcardReversePhotoUrl},
+					#{bankCarInfo},
+					#{bankCarNumber},
+					#{mailbox},
+					#{qualificationsType},
+					#{creditAdvise},
+					#{creditCode},
+					#{creditQueryResultsUrl},
+					#{licenseIdPhotoUrl},
+					#{licenseCode},
+					#{licenseRegister},
+					#{creditQueryResultsFileName},
+					#{licenseIdPhotoFileName},
+					#{remark}
+				)
+			]]>
+	</insert>
+
+	<update id="updateUserVoB"
+		parameterType="com.bichuang.platform.common.vo.UserVoB">
+		update t_user_populouspro_b
+		<set>
+			<if test="address != null and address != ''">
+				address = #{address},
+			</if>
+			<if test="brand != null and brand != ''">
+				brand = #{brand},
+			</if>
+			<if test="companyName != null and companyName != ''">
+				company_name = #{companyName},
+			</if>
+			<if test="bizType != null and bizType != ''">
+				biz_type_id = #{bizType},
+			</if>
+			<if test="realName != null and realName != ''">
+				real_name = #{realName},
+			</if>
+			<if test="sex != null and sex != ''">
+				sexy = #{sex},
+			</if>
+			<if test="updateBy != null and updateBy != ''">
+				update_by = #{updateBy},
+			</if>
+			update_time = now(),
+			<if test="dataStatus != null and dataStatus != ''">
+				data_status = #{dataStatus},
+			</if>
+			<if test="area != null and area != ''">
+				area = #{area},
+			</if>
+			<if test="detailAddress != null and detailAddress != ''">
+				detail_address = #{detailAddress},
+			</if>
+			<if test="idcard != null and idcard != ''">
+				idcard = #{idcard},
+			</if>
+			<if
+				test="idcardFrontPhotoUrl != null and idcardFrontPhotoUrl != ''">
+				idcard_front_photo_url = #{idcardFrontPhotoUrl},
+			</if>
+			<if
+				test="idcardReversePhotoUrl != null and idcardReversePhotoUrl != ''">
+				idcard_reverse_photo_url = #{idcardReversePhotoUrl},
+			</if>
+			<if test="bankCarInfo != null and bankCarInfo != ''">
+				bank_car_info = #{bankCarInfo},
+			</if>
+			<if test="bankCarNumber != null and bankCarNumber != ''">
+				bank_car_number = #{bankCarNumber},
+			</if>
+			<if test="mailbox != null and mailbox != ''">
+				mailbox = #{mailbox},
+			</if>
+			<if test="qualificationsType != null and qualificationsType != ''">
+				qualifications_type = #{qualificationsType},
+			</if>
+			<if test="creditAdvise != null and creditAdvise != ''">
+				credit_advise = #{creditAdvise},
+			</if>
+			<if test="creditCode != null and creditCode != ''">
+				credit_code = #{creditCode},
+			</if>
+			<if
+				test="creditQueryResultsUrl != null and creditQueryResultsUrl != ''">
+				credit_query_results_url = #{creditQueryResultsUrl},
+			</if>
+			<if test="licenseIdPhotoUrl != null and licenseIdPhotoUrl != ''">
+				license_id_photo_url = #{licenseIdPhotoUrl},
+			</if>
+			<if test="licenseCode != null and licenseCode != ''">
+				license_code = #{licenseCode},
+			</if>
+			<if test="licenseRegister != null and licenseRegister != ''">
+				license_register = #{licenseRegister},
+			</if>
+			<if
+				test="creditQueryResultsFileName != null and creditQueryResultsFileName != ''">
+				credit_query_results_file_name = #{creditQueryResultsFileName},
+			</if>
+			<if
+				test="licenseIdPhotoFileName != null and licenseIdPhotoFileName != ''">
+				license_id_photo_file_name = #{licenseIdPhotoFileName},
+			</if>
+			<if test="remark != null and remark != ''">
+				remark = #{remark}
+			</if>
+		</set>
+		<where>
+			user_id = ${id}
+		</where>
+	</update>
+
+	<select id="isExistByUserMobile"
+		parameterType="com.bichuang.platform.common.vo.UserVoB"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM t_sys_user_identity t1 LEFT JOIN
+		`t_user_system_inlet_ref` t2 ON(t1.id = t2.user_id) WHERE
+		t1.mobile=#{mobile} AND t2.data_status=0 and t1.data_status=0 AND
+		t2.system_inlet_id=#{systemInletId}
+	</select>
+
+	<insert id="saveUserAndRoleRelation" useGeneratedKeys="true"
+		keyProperty="id">
+		<![CDATA[
+			INSERT INTO `t_sys_user_role_ref` (
+			  `user_id` ,
+			  `role_id`
+			)
+			VALUES
+				(
+					#{id},
+					#{roleId}
+				)
+			]]>
+	</insert>
+
+	<update id="updateUserAndRoleRelation"
+		parameterType="com.bichuang.platform.common.vo.UserVoB">
+		update t_sys_user_role_ref
+		<set>
+			<if test="roleId != null and roleId != ''">
+				role_id = #{roleId}
+			</if>
+		</set>
+		<where>
+			user_id = ${id}
+		</where>
+	</update>
+
+
+	<insert id="insertUserVoBSelective"
+		parameterType="com.bichuang.platform.common.vo.UserVoB">
+		insert into `t_user_populouspro_b`
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				`user_id`,
+			</if>
+			<if test="address != null">
+				`address`,
+			</if>
+			<if test="brand != null">
+				`brand`,
+			</if>
+			<if test="companyName != null">
+				`company_name`,
+			</if>
+			<if test="bizTypeId != null">
+				`biz_type_id`,
+			</if>
+			<if test="bExtendId != null">
+				`b_extend_id`,
+			</if>
+			<if test="realName != null">
+				`real_name`,
+			</if>
+			<if test="sexy != null">
+				`sexy`,
+			</if>
+			<if test="createBy != null">
+				`create_by`,
+			</if>
+			<if test="createTime != null">
+				`create_time`,
+			</if>
+			<if test="updateBy != null">
+				`update_by`,
+			</if>
+			<if test="updateTime != null">
+				`update_time`,
+			</if>
+			<if test="dataStatus != null">
+				`data_status`,
+			</if>
+			<if test="area != null">
+				`area`,
+			</if>
+			<if test="detailAddress != null">
+				`detail_address`,
+			</if>
+			<if test="lastLoginTime != null">
+				`last_login_time`,
+			</if>
+			<if test="idcard != null">
+				`idcard`,
+			</if>
+			<if test="idcardFrontPhotoUrl != null">
+				`idcard_front_photo_url`,
+			</if>
+			<if test="idcardReversePhotoUrl != null">
+				`idcard_reverse_photo_url`,
+			</if>
+			<if test="bankCarInfo != null">
+				`bank_car_info`,
+			</if>
+			<if test="bankInfoId != null">
+				`bank_info_id`,
+			</if>
+			<if test="bankCarNumber != null">
+				`bank_car_number`,
+			</if>
+			<if test="mailbox != null">
+				`mailbox`,
+			</if>
+			<if test="qualificationsType != null">
+				`qualifications_type`,
+			</if>
+			<if test="creditAdvise != null">
+				`credit_advise`,
+			</if>
+			<if test="creditCode != null">
+				`credit_code`,
+			</if>
+			<if test="creditQueryResultsUrl != null">
+				`credit_query_results_url`,
+			</if>
+			<if test="licenseIdPhotoUrl != null">
+				`license_id_photo_url`,
+			</if>
+			<if test="licenseCode != null">
+				`license_code`,
+			</if>
+			<if test="licenseRegister != null">
+				`license_register`,
+			</if>
+			<if test="creditQueryResultsFileName != null">
+				`credit_query_results_file_name`,
+			</if>
+			<if test="licenseIdPhotoFileName != null">
+				`license_id_photo_file_name`,
+			</if>
+			<if test="auditStatus != null">
+				`audit_status`,
+			</if>
+			<if test="auditBy != null">
+				`audit_by`,
+			</if>
+			<if test="auditByName != null">
+				`audit_by_name`,
+			</if>
+			<if test="auditTime != null">
+				`audit_time`,
+			</if>
+			<if test="remark != null">
+				`remark`,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="brand != null">
+				#{brand,jdbcType=VARCHAR},
+			</if>
+			<if test="companyName != null">
+				#{companyName,jdbcType=VARCHAR},
+			</if>
+			<if test="bizTypeId != null">
+				#{bizTypeId,jdbcType=INTEGER},
+			</if>
+			<if test="bExtendId != null">
+				#{bExtendId,jdbcType=INTEGER},
+			</if>
+			<if test="realName != null">
+				#{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="sexy != null">
+				#{sexy,jdbcType=BIT},
+			</if>
+			<if test="createBy != null">
+				#{createBy,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				#{updateBy,jdbcType=INTEGER},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="dataStatus != null">
+				#{dataStatus,jdbcType=INTEGER},
+			</if>
+			<if test="area != null">
+				#{area,jdbcType=VARCHAR},
+			</if>
+			<if test="detailAddress != null">
+				#{detailAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="lastLoginTime != null">
+				#{lastLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="idcard != null">
+				#{idcard,jdbcType=VARCHAR},
+			</if>
+			<if test="idcardFrontPhotoUrl != null">
+				#{idcardFrontPhotoUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="idcardReversePhotoUrl != null">
+				#{idcardReversePhotoUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCarInfo != null">
+				#{bankCarInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="bankInfoId != null">
+				#{bankInfoId,jdbcType=INTEGER},
+			</if>
+			<if test="bankCarNumber != null">
+				#{bankCarNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="mailbox != null">
+				#{mailbox,jdbcType=VARCHAR},
+			</if>
+			<if test="qualificationsType != null">
+				#{qualificationsType,jdbcType=INTEGER},
+			</if>
+			<if test="creditAdvise != null">
+				#{creditAdvise,jdbcType=INTEGER},
+			</if>
+			<if test="creditCode != null">
+				#{creditCode,jdbcType=VARCHAR},
+			</if>
+			<if test="creditQueryResultsUrl != null">
+				#{creditQueryResultsUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="licenseIdPhotoUrl != null">
+				#{licenseIdPhotoUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="licenseCode != null">
+				#{licenseCode,jdbcType=VARCHAR},
+			</if>
+			<if test="licenseRegister != null">
+				#{licenseRegister,jdbcType=VARCHAR},
+			</if>
+			<if test="creditQueryResultsFileName != null">
+				#{creditQueryResultsFileName,jdbcType=VARCHAR},
+			</if>
+			<if test="licenseIdPhotoFileName != null">
+				#{licenseIdPhotoFileName,jdbcType=VARCHAR},
+			</if>
+			<if test="auditStatus != null">
+				#{auditStatus,jdbcType=INTEGER},
+			</if>
+			<if test="auditBy != null">
+				#{auditBy,jdbcType=INTEGER},
+			</if>
+			<if test="auditByName != null">
+				#{auditByName,jdbcType=VARCHAR},
+			</if>
+			<if test="auditTime != null">
+				#{auditTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+
+	<delete id="deleteUserById" parameterType="java.lang.String">
+		<![CDATA[
+			DELETE FROM t_sys_role_popedom_ref where role_id=#{id}
+		]]>
+	</delete>
+
+	<resultMap id="userBListMap"
+		type="com.bichuang.platform.common.vo.UserVoB">
+		<result column="id" property="id" jdbcType="INTEGER" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="brand" property="brand" jdbcType="VARCHAR" />
+		<result column="company_name" property="companyName"
+			jdbcType="VARCHAR" />
+		<result column="biz_type_id" property="bizTypeId"
+			jdbcType="INTEGER" />
+		<result column="typeName" property="typeName"
+			jdbcType="VARCHAR" />
+		<result column="qualificationsTypeName"
+			property="qualificationsTypeName" jdbcType="VARCHAR" />
+		<result column="idcard_front_photo_url"
+			property="idcardFrontPhotoUrl" jdbcType="VARCHAR" />
+		<result column="idcard_reverse_photo_url"
+			property="idcardReversePhotoUrl" jdbcType="VARCHAR" />
+		<result column="license_id_photo_url"
+			property="licenseIdPhotoUrl" jdbcType="VARCHAR" />
+		<result column="license_code" property="licenseCode"
+			jdbcType="VARCHAR" />
+		<result column="license_register" property="licenseRegister"
+			jdbcType="VARCHAR" />
+		<result column="auditStatusStr" property="auditStatusStr"
+			jdbcType="VARCHAR" />
+		<result column="createTimeStr" property="createTimeStr"
+			jdbcType="VARCHAR" />
+		<result column="create_by" property="createBy"
+			jdbcType="INTEGER" />
+		<result column="auditTimeStr" property="auditTimeStr"
+			jdbcType="VARCHAR" />
+		<result column="audit_by" property="auditBy" jdbcType="INTEGER" />
+		<result column="data_status" property="dataStatus"
+			jdbcType="INTEGER" />
+		<result column="createByName" property="createByName"
+			jdbcType="VARCHAR" />
+		<result column="userTypeStr" property="userTypeStr"
+			jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="queryUserListB"
+		parameterType="com.bichuang.platform.common.vo.UserVoB"
+		resultMap="userBListMap">
+		<![CDATA[
+			select temp1.*,t5.real_name as createByName from 
+			(
+				SELECT
+				temp.*
+			FROM
+				(
+					SELECT
+						t1.id,
+						case
+						when t1.type = '0'
+						then 'C端用户'
+						when t1.type = '1'
+						then 'B端用户'
+						end userTypeStr,
+						t1.mobile,
+						t2.brand,
+						t2.company_name,
+						t2.biz_type_id,
+						CASE
+					WHEN qualifications_type = 1 THEN
+						'个人'
+					WHEN qualifications_type = 2 THEN
+						'企业'
+					END qualificationsTypeName,
+					t2.idcard_front_photo_url,
+					t2.idcard_reverse_photo_url,
+					t2.license_id_photo_url,
+					t2.license_code,
+					t2.license_register,
+					CASE
+				WHEN t2.audit_status = 0 THEN
+					'待审核'
+				WHEN t2.audit_status = 1 THEN
+					'审核通过'
+				WHEN t2.audit_status = 2 THEN
+					'审核不通过'
+				END auditStatusStr,
+				DATE_FORMAT(
+					t2.create_time,
+					'%Y-%m-%d %H:%m:%s'
+				) AS createTimeStr,
+				t2.create_by AS createBy,
+				DATE_FORMAT(
+					t2.audit_time,
+					'%Y-%m-%d %H:%m:%s'
+				) AS auditTimeStr,
+				t2.audit_by AS auditBy,
+				t3.data_status,
+				t2.address
+			FROM
+				t_user_populouspro_b t2
+			LEFT JOIN t_sys_user_identity t1 ON (t1.id = t2.user_id)
+			LEFT JOIN t_user_system_inlet_ref t3 ON (t2.user_id = t3.user_id)
+				) AS temp
+			
+			) as temp1 LEFT JOIN t_user_populouspro_b t5 ON (temp1.createBy = t5.user_id)
+		]]>
+		<where>
+			1=1 AND temp1.data_status = 0
+			<if test="mobile != null and mobile != ''">
+				AND temp1.mobile = #{mobile}
+			</if>
+		</where>
+		ORDER BY temp1.id DESC
+	</select>
+
+	<update id="restPasswordByUserId"
+		parameterType="com.bichuang.platform.common.vo.UserVoB">
+		update t_sys_user_identity
+		<set>
+			password = #{newPassword}
+		</set>
+		<where>
+			mobile = #{mobile}
+		</where>
+	</update>
+
+	<select id="isExistByMobile" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		select count(*) from t_sys_user_identity where mobile =
+		#{mobile}
+	</select>
+
+	<select id="queryUserBById"
+		resultType="com.bichuang.platform.common.vo.UserVoB"
+		parameterType="java.lang.Integer">
+		<![CDATA[
+			SELECT
+				sui.id as id,
+				sui.login_name as loginName,
+				sui.mobile as mobile,
+				upb.address as address,
+				upb.brand as brand,
+				ubea.id as agentId,
+				ubea.agent_name as agentName,
+				upb.company_name as companyName,
+				upb.biz_type_id as bizTypeId,
+				upb.real_name as realName,
+				upb.sexy as sexy,
+				upb.idcard as idcard,
+				upb.idcard_front_photo_url as idcardFrontPhotoUrl,
+				upb.idcard_reverse_photo_url as idcardReversePhotoUrl,
+				upb.mailbox as mailbox,
+				upb.qualifications_type as qualificationsType,
+				upb.license_id_photo_url as licenseIdPhotoUrl,
+				upb.license_code as licenseCode
+				
+			FROM
+				t_sys_user_identity AS sui
+				LEFT JOIN t_user_populouspro_b AS upb on sui.id = upb.user_id
+				LEFT JOIN t_user_b_extend_agent AS ubea on sui.id = ubea.user_id
+		]]>
+		<where>
+			1=1
+			<if test="id != null and id != ''">
+				AND sui.id = #{id}
+			</if>
+		</where>
+	</select>
+
+	<update id="updateUserVoBByPrimaryKeySelective"
+		parameterType="com.bichuang.platform.common.vo.UserVoB">
+		update `t_user_populouspro_b`
+		<set>
+			<if test="address != null">
+				`address` = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="brand != null">
+				`brand` = #{brand,jdbcType=VARCHAR},
+			</if>
+			<if test="companyName != null">
+				`company_name` = #{companyName,jdbcType=VARCHAR},
+			</if>
+			<if test="bizTypeId != null">
+				`biz_type_id` = #{bizTypeId,jdbcType=INTEGER},
+			</if>
+			<if test="bExtendId != null">
+				`b_extend_id` = #{bExtendId,jdbcType=INTEGER},
+			</if>
+			<if test="realName != null">
+				`real_name` = #{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="sexy != null">
+				`sexy` = #{sexy,jdbcType=BIT},
+			</if>
+			<if test="createBy != null">
+				`create_by` = #{createBy,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				`create_time` = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				`update_by` = #{updateBy,jdbcType=INTEGER},
+			</if>
+			<if test="updateTime != null">
+				`update_time` = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="dataStatus != null">
+				`data_status` = #{dataStatus,jdbcType=INTEGER},
+			</if>
+			<if test="area != null">
+				`area` = #{area,jdbcType=VARCHAR},
+			</if>
+			<if test="detailAddress != null">
+				`detail_address` = #{detailAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="lastLoginTime != null">
+				`last_login_time` = #{lastLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="idcard != null">
+				`idcard` = #{idcard,jdbcType=VARCHAR},
+			</if>
+			<if test="idcardFrontPhotoUrl != null">
+				`idcard_front_photo_url` = #{idcardFrontPhotoUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="idcardReversePhotoUrl != null">
+				`idcard_reverse_photo_url` = #{idcardReversePhotoUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCarInfo != null">
+				`bank_car_info` = #{bankCarInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="bankInfoId != null">
+				`bank_info_id` = #{bankInfoId,jdbcType=INTEGER},
+			</if>
+			<if test="bankCarNumber != null">
+				`bank_car_number` = #{bankCarNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="mailbox != null">
+				`mailbox` = #{mailbox,jdbcType=VARCHAR},
+			</if>
+			<if test="qualificationsType != null">
+				`qualifications_type` = #{qualificationsType,jdbcType=INTEGER},
+			</if>
+			<if test="creditAdvise != null">
+				`credit_advise` = #{creditAdvise,jdbcType=INTEGER},
+			</if>
+			<if test="creditCode != null">
+				`credit_code` = #{creditCode,jdbcType=VARCHAR},
+			</if>
+			<if test="creditQueryResultsUrl != null">
+				`credit_query_results_url` = #{creditQueryResultsUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="licenseIdPhotoUrl != null">
+				`license_id_photo_url` = #{licenseIdPhotoUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="licenseCode != null">
+				`license_code` = #{licenseCode,jdbcType=VARCHAR},
+			</if>
+			<if test="licenseRegister != null">
+				`license_register` = #{licenseRegister,jdbcType=VARCHAR},
+			</if>
+			<if test="creditQueryResultsFileName != null">
+				`credit_query_results_file_name` = #{creditQueryResultsFileName,jdbcType=VARCHAR},
+			</if>
+			<if test="licenseIdPhotoFileName != null">
+				`license_id_photo_file_name` = #{licenseIdPhotoFileName,jdbcType=VARCHAR},
+			</if>
+			<if test="auditStatus != null">
+				`audit_status` = #{auditStatus,jdbcType=INTEGER},
+			</if>
+			<if test="auditBy != null">
+				`audit_by` = #{auditBy,jdbcType=INTEGER},
+			</if>
+			<if test="auditByName != null">
+				`audit_by_name` = #{auditByName,jdbcType=VARCHAR},
+			</if>
+			<if test="auditTime != null">
+				`audit_time` = #{auditTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				`remark` = #{remark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where `user_id` = #{id,jdbcType=INTEGER}
+	</update>
+
+	<update id="deleteUserVoById" parameterType="java.util.Map">
+		<![CDATA[
+			update t_user_populouspro_b set data_status=1 where user_id in (${ids})
+		]]>
+	</update>
+
+	<select id="isExistByTel" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM t_sys_user_identity t1 LEFT JOIN
+		`t_user_system_inlet_ref` t2 ON(t1.id = t2.user_id) WHERE
+		t1.mobile=#{mobile} AND t2.data_status=0 and t1.data_status=0 AND
+		t2.system_inlet_id=#{systemInletId}
+	</select>
+
+	<select id="isBelongToAdSys" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select count(*) from t_user_system_inlet_ref where system_inlet_id=#{sysId}
+		and user_id = #{userId} and data_status=0
+	</select>
+
+	<update id="deleteUserSystemInletRef"
+		parameterType="java.util.Map">
+  		<![CDATA[
+			update t_user_system_inlet_ref set data_status=1 where user_id in (${ids})
+		]]>
+	</update>
+	<select id="queryUserIdByTel" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		select id from t_sys_user_identity where mobile=#{tel}
+	</select>
+
+	<resultMap
+		type="com.bichuang.platform.common.vo.ComContractVo"
+		id="ccMap">
+		<result column="company_name" property="secondCompanyName"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="selectYfCompanyList"
+		parameterType="com.bichuang.platform.common.vo.ComContractVo"
+		resultMap="ccMap">
+  		<![CDATA[
+			select t.company_name from t_user_populouspro_b t where t.company_name like CONCAT('%','${secondCompanyName}','%' ) limit 0,10
+		]]>
+	</select>
+
+	<select id="selectYfCompanyVo"
+		parameterType="com.bichuang.platform.common.vo.ComContractVo"
+		resultType="com.bichuang.platform.common.vo.ComContractVo">
+  		<![CDATA[
+  			select distinct t1.real_name as secondSignPerson,t2.mobile as secondSignPersonMobile,t1.brand,t1.user_id as secondSignUserId from t_user_populouspro_b t1
+			left join t_sys_user_identity t2 on (t2.id = t1.user_id)
+			where t1.company_name = #{secondCompanyName} order by t1.create_time desc limit 0,1
+		]]>
+	</select>
+</mapper>

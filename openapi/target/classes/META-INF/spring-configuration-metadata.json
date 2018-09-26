@@ -1,0 +1,32 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.bichuang.openapi.config.PhoneRechargeConfig",
+      "name": "huyi.config",
+      "type": "com.bichuang.openapi.config.PhoneRechargeConfig"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.bichuang.openapi.config.PhoneRechargeConfig",
+      "name": "huyi.config.app-key",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.bichuang.openapi.config.PhoneRechargeConfig",
+      "name": "huyi.config.map",
+      "type": "java.util.Map<java.lang.String,java.lang.String>"
+    },
+    {
+      "sourceType": "com.bichuang.openapi.config.PhoneRechargeConfig",
+      "name": "huyi.config.packages",
+      "type": "java.lang.Double"
+    },
+    {
+      "sourceType": "com.bichuang.openapi.config.PhoneRechargeConfig",
+      "name": "huyi.config.username",
+      "type": "java.lang.String"
+    }
+  ]
+}

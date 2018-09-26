@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.bichuang.usercenter.repository.mapper.SysUserIdentityMapper">
+	<resultMap id="BaseResultMap"
+		type="com.bichuang.usercenter.repository.model.SysUserIdentity">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="password" jdbcType="VARCHAR"
+			property="password" />
+		<result column="login_name" jdbcType="VARCHAR"
+			property="loginName" />
+		<result column="mobile" jdbcType="VARCHAR" property="mobile" />
+		<result column="registe_time" jdbcType="TIMESTAMP"
+			property="registeTime" />
+		<result column="frist_registe_system_id" jdbcType="INTEGER"
+			property="fristRegisteSystemId" />
+		<result column="last_login_time" jdbcType="TIMESTAMP"
+			property="lastLoginTime" />
+		<result column="type" jdbcType="BIT" property="type" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		`id`, `password`, `login_name`, `mobile`, `registe_time`,
+		`frist_registe_system_id`,
+		`last_login_time`, `type`
+	</sql>
+	<select id="selectByPrimaryKey"
+		parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from `t_sys_user_identity`
+		where `id` = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from `t_sys_user_identity`
+		where `id` = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="com.bichuang.usercenter.repository.model.SysUserIdentity">
+		insert into `t_sys_user_identity` (`id`, `password`, `login_name`,
+		`mobile`, `registe_time`, `frist_registe_system_id`,
+		`last_login_time`, `type`)
+		values (#{id,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR},
+		#{loginName,jdbcType=VARCHAR},
+		#{mobile,jdbcType=VARCHAR}, #{registeTime,jdbcType=TIMESTAMP},
+		#{fristRegisteSystemId,jdbcType=INTEGER},
+		#{lastLoginTime,jdbcType=TIMESTAMP}, #{type,jdbcType=BIT})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.bichuang.usercenter.repository.model.SysUserIdentity">
+		insert into `t_sys_user_identity`
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				`id`,
+			</if>
+			<if test="password != null">
+				`password`,
+			</if>
+			<if test="loginName != null">
+				`login_name`,
+			</if>
+			<if test="mobile != null">
+				`mobile`,
+			</if>
+			<if test="registeTime != null">
+				`registe_time`,
+			</if>
+			<if test="fristRegisteSystemId != null">
+				`frist_registe_system_id`,
+			</if>
+			<if test="lastLoginTime != null">
+				`last_login_time`,
+			</if>
+			<if test="type != null">
+				`type`,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="loginName != null">
+				#{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="registeTime != null">
+				#{registeTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="fristRegisteSystemId != null">
+				#{fristRegisteSystemId,jdbcType=INTEGER},
+			</if>
+			<if test="lastLoginTime != null">
+				#{lastLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=BIT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.bichuang.usercenter.repository.model.SysUserIdentity">
+		update `t_sys_user_identity`
+		<set>
+			<if test="password != null">
+				`password` = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="loginName != null">
+				`login_name` = #{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				`mobile` = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="registeTime != null">
+				`registe_time` = #{registeTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="fristRegisteSystemId != null">
+				`frist_registe_system_id` = #{fristRegisteSystemId,jdbcType=INTEGER},
+			</if>
+			<if test="lastLoginTime != null">
+				`last_login_time` = #{lastLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="type != null">
+				`type` = #{type,jdbcType=BIT},
+			</if>
+		</set>
+		where `id` = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.bichuang.usercenter.repository.model.SysUserIdentity">
+		update `t_sys_user_identity`
+		set `password` = #{password,jdbcType=VARCHAR},
+		`login_name` = #{loginName,jdbcType=VARCHAR},
+		`mobile` = #{mobile,jdbcType=VARCHAR},
+		`registe_time` = #{registeTime,jdbcType=TIMESTAMP},
+		`frist_registe_system_id` = #{fristRegisteSystemId,jdbcType=INTEGER},
+		`last_login_time` = #{lastLoginTime,jdbcType=TIMESTAMP},
+		`type` = #{type,jdbcType=BIT}
+		where `id` = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

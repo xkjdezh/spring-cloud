@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bichuang.accountcenter.repository.mapper.ext.BalanceAccountCExtMapper">
+ <resultMap id="BaseResultMap"
+		type="com.bichuang.accountcenter.repository.model.BalanceAccountC">
+		<id column="ID" jdbcType="INTEGER" property="id" />
+		<result column="cust_id" jdbcType="VARCHAR" property="custId" />
+		<result column="cust_name" jdbcType="VARCHAR" property="custName" />
+		<result column="login_pwd" jdbcType="VARCHAR" property="loginPwd" />
+		<result column="pay_pwd" jdbcType="VARCHAR" property="payPwd" />
+		<result column="biz_user_id" jdbcType="VARCHAR" property="bizUserId" />
+		<result column="identity_type" jdbcType="INTEGER" property="identityType" />
+		<result column="identity_no" jdbcType="VARCHAR" property="identityNo" />
+		<result column="amount" jdbcType="DECIMAL" property="amount" />
+		<result column="cash_amount" jdbcType="DECIMAL" property="cashAmount" />
+		<result column="uncash_amount" jdbcType="DECIMAL" property="uncashAmount" />
+		<result column="freeze_cash_amount" jdbcType="DECIMAL"
+			property="freezeCashAmount" />
+		<result column="freeze_unCash_amount" jdbcType="DECIMAL"
+			property="freezeUncashAmount" />
+		<result column="property" jdbcType="CHAR" property="property" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="create_Time" jdbcType="DATE" property="createTime" />
+		<result column="interest_base" jdbcType="DECIMAL" property="interestBase" />
+		<result column="lastTerm_interest_dat" jdbcType="DATE"
+			property="lasttermInterestDat" />
+		<result column="lastUpdate_time" jdbcType="DATE" property="lastupdateTime" />
+		<result column="lastTerm_amount" jdbcType="DECIMAL" property="lasttermAmount" />
+		<result column="check_value" jdbcType="VARCHAR" property="checkValue" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		`ID`, `cust_id`, `cust_name`, `login_pwd`, `pay_pwd`,`biz_user_id`,
+		`identity_type`,
+		`identity_no`,
+		`amount`, `cash_amount`,
+		`uncash_amount`, `freeze_cash_amount`,
+		`freeze_unCash_amount`,
+		`property`, `status`, `create_Time`, `interest_base`,
+		`lastTerm_interest_dat`,
+		`lastUpdate_time`,
+		`lastTerm_amount`,
+		`check_value`
+	</sql>
+	
+	<select id="getBalanceAccountC" resultMap="BaseResultMap" >
+		select
+		<include refid="Base_Column_List" />
+		from `t_bc_c_account`
+		<if test="custId!=null and custId!=''">
+			where `cust_id` = #{custId}
+		</if>
+	</select>
+</mapper>
